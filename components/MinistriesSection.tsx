@@ -1,7 +1,11 @@
 import React from 'react';
 import { BookOpen, Church, Lightbulb, TrendingUp, ArrowRight, Video, Users, HandHeart } from 'lucide-react';
 
-const MinistriesSection: React.FC = () => {
+interface MinistriesSectionProps {
+  onNavigate?: (page: 'home' | 'about' | 'ministries', sectionId?: string) => void;
+}
+
+const MinistriesSection: React.FC<MinistriesSectionProps> = ({ onNavigate }) => {
   const ministries = [
     {
       title: 'Teaching Series',
@@ -28,7 +32,7 @@ const MinistriesSection: React.FC = () => {
       image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
     },
     {
-      title: 'Outreaches and Evangelism',
+      title: 'Outreaches',
       subtitle: 'Reach Where They Are',
       description: 'Taking the message of Christ beyond digital spaces into schools, campuses, and communities.',
       icon: Users,
@@ -50,52 +54,63 @@ const MinistriesSection: React.FC = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {ministries.map((ministry, index) => (
             <div
               key={index}
-              className={`bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden flex flex-col shadow-lg border border-slate-200 dark:border-white/10 group hover:border-${ministry.color}-500/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 delay-${index * 100} duration-700 hover:-translate-y-2`}
+              className={`bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden flex flex-col shadow-lg border border-slate-200 dark:border-white/5 group hover:border-indigo-500/30 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 duration-700 hover:-translate-y-2`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Image Header */}
               <div className="relative h-48 w-full overflow-hidden">
                 <img 
                   src={ministry.image} 
                   alt={ministry.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
-                
-                {/* Floating Icon Badge */}
-                <div className={`absolute -bottom-6 left-1/2 -translate-x-1/2 p-4 rounded-full bg-white dark:bg-slate-800 shadow-xl border-4 border-slate-50 dark:border-slate-800/50 z-10 group-hover:scale-110 transition-transform duration-300`}>
-                  <div className={`text-${ministry.color}-600 dark:text-${ministry.color}-400`}>
-                    <ministry.icon className="w-6 h-6" />
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* Content */}
-              <div className="pt-10 pb-8 px-6 flex flex-col items-center text-center flex-grow">
-                <h4 className="font-display text-xl font-bold mb-2 text-slate-900 dark:text-white">
-                  {ministry.title}
-                </h4>
-                <p className={`text-sm font-semibold text-${ministry.color}-600 dark:text-${ministry.color}-300 mb-4`}>
-                  {ministry.subtitle}
-                </p>
-                <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base flex-grow mb-6 leading-relaxed">
+              <div className="p-6 flex flex-col flex-grow relative">
+                <div className="flex items-start gap-4 mb-3">
+                    <div className={`p-2.5 rounded-xl bg-indigo-100 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shrink-0`}>
+                        <ministry.icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h4 className="font-display text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                        {ministry.title}
+                        </h4>
+                        <p className={`text-xs font-bold text-amber-600 dark:text-amber-400 mt-1 uppercase tracking-wide`}>
+                        {ministry.subtitle}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="w-full h-px bg-slate-200 dark:bg-slate-800 my-3"></div>
+
+                <p className="text-slate-600 dark:text-slate-300 text-sm flex-grow mb-6 leading-relaxed">
                   {ministry.description}
                 </p>
-                <a
-                  href="#"
-                  className={`inline-flex items-center px-5 py-2.5 bg-${ministry.color}-600 hover:bg-${ministry.color}-700 text-white font-medium rounded-full transform group-hover:scale-105 transition-all shadow-lg shadow-${ministry.color}-500/20`}
-                  aria-label={`Learn more about ${ministry.title}`}
+
+                <button
+                  onClick={() => onNavigate?.('ministries')}
+                  className={`inline-flex items-center text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors group/link mt-auto`}
                 >
                   Learn More
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
+                  <ArrowRight className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center">
+            <button 
+                onClick={() => onNavigate?.('ministries')}
+                className="inline-flex items-center justify-center px-10 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 group"
+            >
+                Discover All Ministry Works
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
         </div>
       </div>
     </section>

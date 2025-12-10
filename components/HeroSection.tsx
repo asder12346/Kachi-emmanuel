@@ -1,7 +1,11 @@
 import React from 'react';
 import { Play, HeartHandshake } from 'lucide-react';
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onNavigate?: (page: 'home' | 'about', sectionId?: string) => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   return (
     <section id="home" className="relative bg-gradient-to-br from-indigo-50 dark:from-slate-900 to-white dark:to-slate-950 py-20 md:py-32 overflow-hidden flex items-center justify-center min-h-[calc(100vh-64px)] transition-colors duration-300">
       
@@ -24,22 +28,22 @@ const HeroSection: React.FC = () => {
           Spreading the Gospel through innovative media, powerful teachings, and transformative outreach programs that touch hearts and change lives.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-          <a
-            href="#"
+          <button
+            onClick={() => onNavigate?.('home', 'ministries')} // Assuming 'Watch Messages' goes to a section or maybe a new page later. For now, let's link to Video or Ministries. Using 'ministries' for now or 'video' if VideoSection has an ID.
             className="inline-flex items-center justify-center px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full shadow-lg shadow-indigo-500/30 transform hover:scale-105 transition-all group"
             aria-label="Watch Messages"
           >
             <Play className="w-5 h-5 mr-2 group-hover:animate-bounce-horizontal" />
             Watch Messages
-          </a>
-          <a
-            href="#partner"
+          </button>
+          <button
+            onClick={() => onNavigate?.('home', 'partner')}
             className="inline-flex items-center justify-center px-8 py-3 bg-transparent border-2 border-indigo-600 dark:border-indigo-400 text-indigo-700 dark:text-indigo-400 font-bold rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transform hover:scale-105 transition-all group"
             aria-label="Partner Now"
           >
             <HeartHandshake className="w-5 h-5 mr-2 group-hover:rotate-6 transition-transform" />
             Partner Now
-          </a>
+          </button>
         </div>
       </div>
     </section>

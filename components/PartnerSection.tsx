@@ -25,7 +25,7 @@ const PartnerSection: React.FC = () => {
       subtitle: 'Consistent Kingdom support',
       description: 'Commit to a monthly gift that helps sustain ongoing outreaches, discipleship platforms, and media missions.',
       icon: DollarSign,
-      buttonText: 'Start Monthly Partnership',
+      buttonText: 'Start Partnership',
       color: 'purple',
     },
   ];
@@ -51,8 +51,8 @@ const PartnerSection: React.FC = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {option.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-amber-500 text-white text-xs font-bold uppercase rounded-full shadow-md">
-                  Highlight
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md">
+                  Most Popular
                 </div>
               )}
               <div className={`p-4 rounded-full bg-${option.color}-100 dark:bg-${option.color}-900/30 text-${option.color}-700 dark:text-${option.color}-400 mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -64,16 +64,18 @@ const PartnerSection: React.FC = () => {
               <p className={`text-sm font-semibold text-${option.color}-600 dark:text-${option.color}-300 mb-4`}>
                 {option.subtitle}
               </p>
-              <p className="text-slate-600 dark:text-slate-300 text-base flex-grow mb-6">
+              <p className="text-slate-600 dark:text-slate-300 text-sm flex-grow mb-8 leading-relaxed">
                 {option.description}
               </p>
+              
+              {/* Updated Button: Smaller and Better */}
               <a
                 href="#"
-                className={`inline-flex items-center px-6 py-3 bg-${option.color}-600 hover:bg-${option.color}-700 text-white font-bold rounded-full shadow-lg shadow-${option.color}-500/30 transform group-hover:scale-105 transition-all group`}
+                className={`inline-flex items-center px-6 py-2.5 text-sm font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95 group-hover:bg-${option.color}-600 group-hover:text-white bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-transparent`}
                 aria-label={option.buttonText}
               >
                 {option.buttonText}
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
           ))}
