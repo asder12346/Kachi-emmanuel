@@ -1,15 +1,10 @@
-
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
-*/
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
-import VideoSection from './components/VideoSection';
 import MinistriesSection from './components/MinistriesSection';
 import MinistriesPage from './components/MinistriesPage';
+import PartnerPage from './components/PartnerPage';
 import GallerySection from './components/GallerySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ConnectSection from './components/ConnectSection';
@@ -18,7 +13,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import DevotionalModal from './components/DevotionalModal';
 
-export type Page = 'home' | 'about' | 'ministries';
+export type Page = 'home' | 'about' | 'ministries' | 'partner';
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -26,7 +21,6 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
 
   useEffect(() => {
-    // Apply dark mode class to documentElement
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -35,12 +29,11 @@ const App: React.FC = () => {
   }, [isDarkMode]);
 
   useEffect(() => {
-    // Show devotional modal on first visit in session
     const hasSeenDevotional = sessionStorage.getItem('hasSeenDevotionalModal');
     if (!hasSeenDevotional) {
       const timer = setTimeout(() => {
         setShowDevotionalModal(true);
-      }, 2000); // Show after 2 seconds
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -52,7 +45,6 @@ const App: React.FC = () => {
 
   const handleNavigate = (page: Page, sectionId?: string) => {
     setCurrentPage(page);
-    // Allow time for render before scrolling
     setTimeout(() => {
       if (sectionId) {
         const element = document.getElementById(sectionId);
@@ -60,11 +52,7 @@ const App: React.FC = () => {
           const headerOffset = 80;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -78,40 +66,32 @@ const App: React.FC = () => {
         return (
           <>
             <HeroSection onNavigate={handleNavigate} />
-            <VideoSection />
+            <AboutSection isSimple={true} />
             <MinistriesSection onNavigate={handleNavigate} />
             <GallerySection />
             <TestimonialsSection />
             <ConnectSection />
-            <PartnerSection />
+            <PartnerSection onNavigate={handleNavigate} />
             <ContactSection />
           </>
         );
       case 'about':
-        return (
-          <>
-            <AboutSection />
-            <VideoSection />
-            <PartnerSection />
-            <ContactSection />
-          </>
-        );
+        return <AboutSection isSimple={false} />;
       case 'ministries':
         return (
           <>
-            <MinistriesPage />
-            <ConnectSection />
-            <PartnerSection />
-            <ContactSection />
+            <MinistriesPage onNavigate={handleNavigate} />
           </>
         );
+      case 'partner':
+        return <PartnerPage onNavigate={handleNavigate} />;
       default:
         return null;
     }
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen transition-colors duration-300 flex flex-col">
       <Navbar 
         isDarkMode={isDarkMode} 
         toggleDarkMode={() => setIsDarkMode(!isDarkMode)} 

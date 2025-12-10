@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpenText, ArrowUp, Facebook, Instagram, Twitter, Youtube, Mail, MapPin, Phone } from 'lucide-react';
+import { BookOpenText, Facebook, Instagram, Twitter, Youtube, Mail, MapPin, Phone, Heart, ArrowRight, Sparkles, ChevronUp } from 'lucide-react';
 import { Page } from '../App';
 
 interface FooterProps {
@@ -13,66 +13,79 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
+  const navLinks = [
     { name: 'Home', page: 'home', section: 'home' },
-    { name: 'About', page: 'about', section: 'about' },
-    { name: 'Ministry', page: 'ministries', section: 'ministries' },
+    { name: 'About Us', page: 'about', section: 'about' },
+    { name: 'Ministries', page: 'ministries', section: 'ministries' },
     { name: 'Partner', page: 'home', section: 'partner' },
     { name: 'Contact', page: 'home', section: 'contact' },
   ];
 
-  const resources = [
-    { name: 'Sermons', page: 'home', section: 'home' }, // Usually maps to a media section
-    { name: 'Devotionals', page: 'ministries', section: 'devotionals' },
-    { name: 'Blog', page: 'home', section: 'home' },
-    { name: 'Prayer Requests', page: 'home', section: 'contact' },
+  const socialLinks = [
+    { icon: Facebook, label: 'Facebook', href: '#', color: 'bg-blue-600' },
+    { icon: Instagram, label: 'Instagram', href: '#', color: 'bg-pink-600' },
+    { icon: Twitter, label: 'Twitter', href: '#', color: 'bg-sky-500' },
+    { icon: Youtube, label: 'YouTube', href: '#', color: 'bg-red-600' },
   ];
 
   return (
-    <footer className="bg-slate-900 dark:bg-black text-slate-300 pt-20 pb-10 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
-          <div className="col-span-1 lg:col-span-1">
+    <footer className="relative bg-slate-950 text-slate-400 pt-24 pb-12 transition-colors overflow-hidden border-t border-white/5">
+      
+      {/* Background Ambience */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#FFDE59]/5 rounded-full blur-[120px] -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[100px] translate-y-1/2"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
+          
+          {/* Column 1: Brand & Bio */}
+          <div className="lg:col-span-4">
             <button 
               onClick={() => onNavigate('home', 'home')}
-              className="flex items-center gap-2 mb-6 group"
+              className="flex items-center gap-3 mb-8 group"
             >
-              <BookOpenText className="w-8 h-8 text-indigo-400 group-hover:rotate-6 transition-transform" />
-              <span className="font-display font-bold text-2xl text-white">
-                Kachi Emmanuel <span className="text-indigo-400">Ministries</span>
-              </span>
+              <div className="p-2.5 rounded-2xl bg-[#FFDE59] shadow-xl shadow-[#FFDE59]/30 group-hover:rotate-6 transition-transform">
+                <BookOpenText className="w-8 h-8 text-[#1a1a1a]" />
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="font-display font-bold text-2xl text-white tracking-tight leading-none">
+                  Kachi Emmanuel
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFDE59] to-amber-400 font-bold tracking-[0.2em] text-[10px] uppercase mt-1">
+                  Ministries
+                </span>
+              </div>
             </button>
-            <p className="text-slate-400 leading-relaxed mb-8">
-              "Ministering through Creativity for the Kingdom of God." We are committed to spreading the Gospel through innovative media and transformative outreach.
+            <p className="text-slate-400 leading-relaxed mb-8 max-w-sm text-sm">
+              Empowering a global generation through the creative presentation of the Gospel. Join us in transforming lives and spreading the light of Christ across all platforms.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="p-2 bg-slate-800 hover:bg-indigo-600 text-white rounded-lg transition-colors" aria-label="Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-slate-800 hover:bg-indigo-600 text-white rounded-lg transition-colors" aria-label="Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-slate-800 hover:bg-indigo-600 text-white rounded-lg transition-colors" aria-label="Twitter">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-slate-800 hover:bg-indigo-600 text-white rounded-lg transition-colors" aria-label="YouTube">
-                <Youtube className="w-5 h-5" />
-              </a>
+              {socialLinks.map((social) => (
+                <a 
+                  key={social.label}
+                  href={social.href}
+                  className={`w-10 h-10 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-all transform hover:-translate-y-1 ${social.color} hover:border-transparent`}
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display font-bold text-lg text-white mb-6 uppercase tracking-wider">Quick Links</h4>
+          {/* Column 2: Quick Links */}
+          <div className="lg:col-span-2">
+            <h4 className="font-display font-bold text-white mb-8 tracking-[0.2em] uppercase text-xs flex items-center gap-2">
+              <Sparkles className="w-3 h-3 text-[#FFDE59]" /> Navigation
+            </h4>
             <ul className="space-y-4">
-              {quickLinks.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.name}>
                   <button 
                     onClick={() => onNavigate(link.page as Page, link.section)}
-                    className="hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    className="hover:text-[#FFDE59] transition-colors flex items-center gap-2 group text-sm font-medium"
                   >
-                    <span className="w-1 h-1 bg-indigo-500 rounded-full"></span>
+                    <ArrowRight className="w-3 h-3 text-[#FFDE59] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                     {link.name}
                   </button>
                 </li>
@@ -80,55 +93,86 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h4 className="font-display font-bold text-lg text-white mb-6 uppercase tracking-wider">Resources</h4>
-            <ul className="space-y-4">
-              {resources.map((link) => (
-                <li key={link.name}>
-                  <button 
-                    onClick={() => onNavigate(link.page as Page, link.section)}
-                    className="hover:text-indigo-400 transition-colors flex items-center gap-2"
-                  >
-                    <span className="w-1 h-1 bg-amber-500 rounded-full"></span>
-                    {link.name}
-                  </button>
-                </li>
-              ))}
+          {/* Column 3: Contact Info */}
+          <div className="lg:col-span-3">
+            <h4 className="font-display font-bold text-white mb-8 tracking-[0.2em] uppercase text-xs flex items-center gap-2">
+               Connect With Us
+            </h4>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4">
+                <div className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-[#FFDE59]">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Email Support</span>
+                  <a href="mailto:info@kachiministry.org" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold">
+                    info@kachiministry.org
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-[#FFDE59]">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Global Line</span>
+                  <a href="tel:+2348137665723" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold">
+                    +234 813 766 5723
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-[#FFDE59]">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Location</span>
+                  <span className="text-slate-300 text-sm font-semibold">Lagos, Nigeria</span>
+                </div>
+              </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-display font-bold text-lg text-white mb-6 uppercase tracking-wider">Follow Us</h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-indigo-400 shrink-0 mt-1" />
-                <span className="text-slate-400">info@kachiministry.org</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-indigo-400 shrink-0 mt-1" />
-                <span className="text-slate-400">+234 813 766 5723</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-indigo-400 shrink-0 mt-1" />
-                <span className="text-slate-400">Nigeria</span>
-              </div>
-            </div>
+          {/* Column 4: Partnership CTA */}
+          <div className="lg:col-span-3">
+             <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-[#FFDE59]/20 to-amber-900/10 border border-white/5 relative group overflow-hidden shadow-2xl">
+                <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#FFDE59]/10 rounded-full blur-3xl transition-transform duration-700 group-hover:scale-150"></div>
+                <div className="w-12 h-12 bg-[#FFDE59]/20 rounded-2xl flex items-center justify-center mb-6">
+                    <Heart className="w-6 h-6 text-[#FFDE59] animate-pulse-slow fill-[#FFDE59]" />
+                </div>
+                <h5 className="text-white font-bold text-lg mb-3">Partner with us</h5>
+                <p className="text-slate-400 text-xs mb-8 leading-relaxed">
+                  Join our mission to saturate the world with the Gospel through high-impact creative works.
+                </p>
+                <button 
+                  onClick={() => onNavigate('home', 'partner')}
+                  className="w-full py-4 bg-white text-slate-950 hover:bg-[#FFDE59] hover:text-[#1a1a1a] transition-all font-bold rounded-2xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-xl shadow-white/5"
+                >
+                  Become a Partner <ArrowRight className="w-4 h-4" />
+                </button>
+             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 text-sm text-center md:text-left">
-            &copy; {currentYear} Kachi Emmanuel Ministries. All Rights Reserved.
-          </p>
+        {/* Bottom Bar */}
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
+            <p className="text-slate-500 text-xs font-medium">
+              &copy; {currentYear} Kachi Emmanuel Ministries. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+                <a href="#" className="text-[10px] text-slate-600 hover:text-slate-400 uppercase tracking-widest transition-colors">Privacy Policy</a>
+                <a href="#" className="text-[10px] text-slate-600 hover:text-slate-400 uppercase tracking-widest transition-colors">Terms of Service</a>
+            </div>
+          </div>
+
+          {/* Back to Top */}
           <button 
             onClick={scrollToTop}
-            className="p-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg transition-all transform hover:-translate-y-1"
-            aria-label="Scroll to top"
+            className="flex items-center gap-3 px-6 py-3 bg-slate-900 hover:bg-[#FFDE59] text-slate-400 hover:text-[#1a1a1a] rounded-full border border-slate-800 transition-all group shadow-lg"
           >
-            <ArrowUp className="w-6 h-6" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Back to top</span>
+            <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
           </button>
         </div>
       </div>
