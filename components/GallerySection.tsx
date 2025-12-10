@@ -53,6 +53,7 @@ const GallerySection: React.FC = () => {
     { src: 'https://via.placeholder.com/800x600/280c2d/fae78e?text=Worship+Night', alt: 'Worship Night', caption: 'Worship Night' },
     { src: 'https://via.placeholder.com/800x600/fae78e/000000?text=Community+Service', alt: 'Community Service', caption: 'Community Service' },
     { src: 'https://via.placeholder.com/800x600/111111/ffffff?text=Conference', alt: 'Conference', caption: 'Conference' },
+    { src: 'https://via.placeholder.com/800x600/442244/fae78e?text=Baptism', alt: 'Baptism', caption: 'Baptism Service' },
   ];
 
   return (
@@ -68,7 +69,7 @@ const GallerySection: React.FC = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {galleryImages.map((img, index) => (
             <GalleryItem key={index} img={img} index={index} />
           ))}

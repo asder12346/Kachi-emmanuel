@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
@@ -19,20 +18,19 @@ import {
   Clock,
   ChevronRight,
   Map as MapIcon,
-  Zap
+  Zap,
+  Play
 } from 'lucide-react';
 
-// Simplified World Map SVG Component for visual representation
-// Use React.PropsWithChildren to ensure the 'children' prop is correctly handled in the component definition
+// Simplified World Map SVG Component
 const WorldMapSVG = ({ children }: React.PropsWithChildren) => (
-  <svg viewBox="0 0 1000 500" className="w-full h-auto text-slate-200 dark:text-slate-800 fill-current overflow-visible transition-colors duration-500">
-    {/* Basic continent outlines (simplified) */}
-    <path d="M120,100 C150,80 200,80 250,110 C300,140 280,220 220,250 C180,270 140,240 120,200 Z" opacity="0.3" /> {/* N. America */}
-    <path d="M280,280 C320,260 380,280 400,320 C420,380 380,480 320,490 C280,470 260,400 280,320" opacity="0.3" /> {/* S. America */}
-    <path d="M480,80 C520,60 580,70 600,110 C620,160 580,200 520,210 C480,200 460,150 480,100" opacity="0.3" /> {/* Europe */}
-    <path d="M440,220 C480,200 540,210 580,250 C620,320 580,440 520,450 C480,440 440,350 440,220" opacity="0.3" /> {/* Africa */}
-    <path d="M600,120 C700,80 850,100 900,180 C920,280 850,380 750,390 C650,380 600,280 600,120" opacity="0.3" /> {/* Asia */}
-    <path d="M820,400 C860,390 920,410 930,450 C940,490 880,500 840,490 C810,470 800,430 820,400" opacity="0.3" /> {/* Australia */}
+  <svg viewBox="0 0 1000 500" className="w-full h-auto text-[#280c2d] fill-current overflow-visible transition-colors duration-500">
+    <path d="M120,100 C150,80 200,80 250,110 C300,140 280,220 220,250 C180,270 140,240 120,200 Z" opacity="0.1" /> 
+    <path d="M280,280 C320,260 380,280 400,320 C420,380 380,480 320,490 C280,470 260,400 280,320" opacity="0.1" /> 
+    <path d="M480,80 C520,60 580,70 600,110 C620,160 580,200 520,210 C480,200 460,150 480,100" opacity="0.1" /> 
+    <path d="M440,220 C480,200 540,210 580,250 C620,320 580,440 520,450 C480,440 440,350 440,220" opacity="0.1" /> 
+    <path d="M600,120 C700,80 850,100 900,180 C920,280 850,380 750,390 C650,380 600,280 600,120" opacity="0.1" /> 
+    <path d="M820,400 C860,390 920,410 930,450 C940,490 880,500 840,490 C810,470 800,430 820,400" opacity="0.1" /> 
     {children}
   </svg>
 );
@@ -47,10 +45,10 @@ const MinistriesPage: React.FC = () => {
   }, []);
 
   const stats = [
-    { label: 'Ministry Arms', value: '7+', icon: ShieldCheck, color: 'indigo' },
-    { label: 'Annual Reach', value: '50+', icon: Calendar, color: 'amber' },
-    { label: 'Countries Impacted', value: '15+', icon: Globe, color: 'purple' },
-    { label: 'Volunteers', value: '200+', icon: Users, color: 'emerald' },
+    { label: 'Ministry Arms', value: '7+', icon: ShieldCheck },
+    { label: 'Annual Reach', value: '50+', icon: Calendar },
+    { label: 'Countries Impacted', value: '15+', icon: Globe },
+    { label: 'Volunteers', value: '200+', icon: Users },
   ];
 
   const impactedCountries = [
@@ -60,15 +58,6 @@ const MinistriesPage: React.FC = () => {
     { id: 'uk', name: 'United Kingdom', x: 495, y: 145, work: 'Global Leadership Seminars & Virtual Cell Groups', flag: '🇬🇧' },
     { id: 'usa', name: 'United States', x: 215, y: 165, work: 'Media Broadcasting & Partnership Summits', flag: '🇺🇸' },
     { id: 'canada', name: 'Canada', x: 205, y: 115, work: 'Digital Mentorship & Youth Empowerment Forums', flag: '🇨🇦' },
-    { id: 'south-africa', name: 'South Africa', x: 520, y: 435, work: 'Urban Evangelism & Tech-Faith Initiatives', flag: '🇿🇦' },
-    { id: 'australia', name: 'Australia', x: 865, y: 445, work: 'Online Bible Study Networks & Outreach Support', flag: '🇦🇺' },
-    { id: 'india', name: 'India', x: 715, y: 275, work: 'Missions Support & Children Education Projects', flag: '🇮🇳' },
-    { id: 'uae', name: 'United Arab Emirates', x: 605, y: 255, work: 'Professional Discipleship & Media Outreach', flag: '🇦🇪' },
-    { id: 'germany', name: 'Germany', x: 515, y: 150, work: 'Youth Mentorship & Literature Distribution', flag: '🇩🇪' },
-    { id: 'brazil', name: 'Brazil', x: 345, y: 385, work: 'Social Impact Outreaches & Community Prayer', flag: '🇧🇷' },
-    { id: 'rwanda', name: 'Rwanda', x: 528, y: 355, work: 'Healing & Reconciliation Seminars', flag: '🇷🇼' },
-    { id: 'uganda', name: 'Uganda', x: 528, y: 342, work: 'Education Support & School Evangelism', flag: '🇺🇬' },
-    { id: 'sierra-leone', name: 'Sierra Leone', x: 455, y: 320, work: 'Medical Relief & Rural Gospel Missions', flag: '🇸🇱' },
   ];
 
   const ministryDetails = [
@@ -77,18 +66,11 @@ const MinistriesPage: React.FC = () => {
       title: 'Believers Perspective',
       subtitle: 'Teaching & Digital Discipleship',
       icon: BookOpen,
-      color: 'indigo',
       description: 'A digital content platform dedicated to teaching the Word of God with simplicity and depth, specifically tailored for the growth of young believers.',
-      outreach: [
-        'Weekly Video Teaching Series',
-        'Spiritual Growth Mentorship Groups',
-        'Digital Discipleship Resource Hub',
-        '1-on-1 Spiritual Guidance Sessions'
-      ],
+      outreach: ['Weekly Video Teaching Series', 'Spiritual Growth Mentorship Groups', 'Digital Discipleship Resource Hub'],
       schedule: [
         { day: 'Tuesdays', time: '7:00 PM', event: 'Live Word Study' },
-        { day: 'Saturdays', time: '10:00 AM', event: 'Mentorship Group Huddles' },
-        { day: 'Monthly', time: 'Last Sat', event: 'Spiritual Growth Workshop' }
+        { day: 'Saturdays', time: '10:00 AM', event: 'Mentorship Group Huddles' }
       ],
       involvement: 'Join our content review team, help moderate our digital community groups, or contribute to our spiritual growth resources.',
       cta: 'Explore Teachings'
@@ -98,17 +80,10 @@ const MinistriesPage: React.FC = () => {
       title: 'The Gospel Truth',
       subtitle: 'Media & Global Interviews',
       icon: Mic2,
-      color: 'amber',
       description: 'Engaging the culture through thought-provoking conversations. We host leaders in ministry and industry to address faith in the modern world.',
-      outreach: [
-        'High-Impact Video Podcast',
-        'Industry Leader Insight Sessions',
-        'Youth Q&A Live Forums',
-        'Global Faith & Culture Documentary Series'
-      ],
+      outreach: ['High-Impact Video Podcast', 'Industry Leader Insight Sessions', 'Global Faith & Culture Documentary Series'],
       schedule: [
         { day: 'Fridays', time: '8:00 AM', event: 'Podcast Episode Release' },
-        { day: 'Bi-Weekly', time: '6:00 PM', event: 'IG Live Behind-the-Scenes' },
         { day: 'Quarterly', time: 'Varies', event: 'Media Summit' }
       ],
       involvement: 'Volunteer for video production, guest research, technical support, or social media community management.',
@@ -118,187 +93,136 @@ const MinistriesPage: React.FC = () => {
       id: 'spirit-stature',
       title: 'Spirit and Stature',
       icon: Sparkles,
-      color: 'purple',
       subtitle: 'Faith, Excellence & Fashion',
       description: 'Inspiring a generation to reflect the beauty of God internally and externally. We believe spiritual growth should mirror outward excellence.',
-      outreach: [
-        'Faith & Fashion Workshops',
-        'Excellence in Ministry Training',
-        'Spiritual & Physical Grooming Seminars',
-        'Annual Excellence Awards'
-      ],
+      outreach: ['Faith & Fashion Workshops', 'Spiritual & Physical Grooming Seminars', 'Annual Excellence Awards'],
       schedule: [
         { day: 'Mondays', time: '9:00 AM', event: 'Weekly Excellence Guide' },
-        { day: 'Monthly', time: '2nd Sat', event: 'In-person Styling & Faith Session' },
         { day: 'Annually', time: 'October', event: 'Spirit & Stature Conference' }
       ],
       involvement: 'Join our planning committee, partner as a Christian designer, or serve as a mentor in our excellence programs.',
       cta: 'Discover Excellence'
-    },
-    {
-      id: 'campus-invasion',
-      title: 'Campus Invasion',
-      icon: Flame,
-      color: 'emerald',
-      subtitle: 'Field Evangelism',
-      description: 'Taking the message of Christ beyond the screen. We invade schools, campuses, and rural communities with the fire of the Holy Spirit.',
-      outreach: [
-        'Secondary School Gospel Tours',
-        'University Fellowship Revivals',
-        'Community Medical & Food Outreaches',
-        'Rural Evangelism Training'
-      ],
-      schedule: [
-        { day: 'Bi-Monthly', time: 'Weekend', event: 'Regional Campus Rally' },
-        { day: 'Monthly', time: '3rd Sat', event: 'Community Service Drive' },
-        { day: 'Semiannually', time: 'Varies', event: 'Rural Mission Trip' }
-      ],
-      involvement: 'Register as a field missionary, join the logistics & planning team, or contribute to our outreach funding projects.',
-      cta: 'Join The Invasion'
     }
   ];
 
   const featured = [
-    {
-      tag: 'Faith in Action',
-      title: 'Believers Perspective',
-      expression: 'Digital content platform',
-      focus: 'Teaching the Word and helping young believers grow spiritually.',
-      purpose: 'To help young believers overcome struggles and walk in maturity.',
-      icon: BookOpen,
-      color: 'indigo'
-    },
-    {
-      tag: 'Kingdom Living',
-      title: 'The Gospel Truth',
-      expression: 'Video Podcast',
-      focus: 'Deep conversations about faith, purpose, and culture.',
-      purpose: 'Interview-style video podcast featuring influential voices.',
-      icon: Mic2,
-      color: 'amber'
-    },
-    {
-      tag: 'Purpose Driven',
-      title: 'Spirit and Stature',
-      expression: 'Faith & Fashion',
-      focus: 'Fusing faith and fashion for spiritual and physical excellence.',
-      purpose: 'Mirroring the inner beauty of the Spirit through outward excellence.',
-      icon: Sparkles,
-      color: 'purple'
-    },
-    {
-      tag: 'Evangelism',
-      title: 'Campus Outreaches',
-      expression: 'Schools & Communities',
-      focus: 'Reaching young people where they are on campuses.',
-      purpose: 'Taking Christ beyond digital spaces into schools and communities.',
-      icon: Flame,
-      color: 'emerald'
-    }
+    { tag: 'Faith in Action', title: 'Believers Perspective', focus: 'Helping believers grow spiritually.', icon: BookOpen },
+    { tag: 'Kingdom Living', title: 'The Gospel Truth', focus: 'Deep conversations about faith & culture.', icon: Mic2 },
+    { tag: 'Purpose Driven', title: 'Spirit and Stature', focus: 'Fusing faith and fashion for excellence.', icon: Sparkles },
+    { tag: 'Evangelism', title: 'Campus Outreaches', focus: 'Reaching young people on campuses.', icon: Flame }
   ];
 
   const arms = [
-    {
-      title: 'Youth & Campus Ministry',
-      description: 'Engaging the next generation through campus fellowships, mentorship programs, and youth empowerment initiatives.',
-      btn: 'Get Involved',
-      icon: Users,
-    },
-    {
-      title: 'Community Outreach',
-      description: 'Taking the message of Christ beyond digital spaces into schools, campuses, and rural communities.',
-      btn: 'Serve With Us',
-      icon: HandHeart,
-    },
-    {
-      title: 'Prayer & Intercession',
-      description: 'Building a foundation of prayer that undergirds all ministry activities and impacts nations globally.',
-      btn: 'Join Prayer',
-      icon: Flame,
-    }
-  ];
-
-  const devotionals = [
-    { date: 'Nov 15, 2023', read: '5 min read', title: 'Finding Peace in Turbulent Times', desc: 'Discover how to maintain inner peace and spiritual stability when everything around you seems chaotic.' },
-    { date: 'Nov 8, 2023', read: '7 min read', title: 'Transformative Power of Prayer', desc: 'Explore how consistent prayer can transform your circumstances and align your heart with God\'s will.' },
-    { date: 'Nov 1, 2023', read: '6 min read', title: 'Walking in Your God-Given Purpose', desc: 'Learn practical steps to discover and walk confidently in the purpose God has designed for your life.' },
+    { title: 'Youth & Campus Ministry', description: 'Engaging the next generation through campus fellowships.', btn: 'Get Involved', icon: Users },
+    { title: 'Community Outreach', description: 'Taking the message of Christ into schools and communities.', btn: 'Serve With Us', icon: HandHeart },
+    { title: 'Prayer & Intercession', description: 'Building a foundation of prayer that impacts nations.', btn: 'Join Prayer', icon: Flame }
   ];
 
   if (!mounted) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-950 transition-colors">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+    <div className="bg-black text-white font-sans selection:bg-[#fae78e] selection:text-[#280c2d]">
+      
+      {/* Hero Section with Image Background */}
+      <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden min-h-[60vh] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+             <img 
+                src="https://images.unsplash.com/photo-1511649475669-e288648b2339?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                alt="Ministry Background" 
+                className="w-full h-full object-cover opacity-40"
+             />
+             <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d]/80 to-black"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h2 className="text-sm md:text-base uppercase tracking-[0.3em] font-bold text-indigo-600 dark:text-indigo-400 mb-4 animate-in slide-in-from-top-4">
-                Kachi Emmanuel Ministries
+            <h2 className="text-sm md:text-base uppercase tracking-[0.3em] font-bold text-[#fae78e] mb-4 animate-in slide-in-from-top-4 flex items-center justify-center gap-2">
+                <Sparkles className="w-4 h-4" /> Kachi Emmanuel Ministries
             </h2>
-            <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 animate-in slide-in-from-bottom-4">
-                Our Ministry <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-amber-500">Works</span>
+            <h1 className="font-display text-5xl sm:text-7xl font-extrabold text-white mb-6 animate-in slide-in-from-bottom-4 leading-tight">
+                Our Ministry <span className="text-[#fae78e] drop-shadow-[0_0_15px_rgba(250,231,142,0.4)]">Works</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-12 animate-in fade-in">
+            <p className="max-w-3xl mx-auto text-lg text-slate-300 leading-relaxed mb-12 animate-in fade-in font-light">
                 Discover the various ways we're spreading the Gospel and transforming lives through creative ministry expressions.
-                <span className="block mt-4 font-semibold text-slate-900 dark:text-slate-100 text-2xl">
-                    Ministering Through Creativity
-                </span>
             </p>
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
                 {stats.map((stat, i) => (
-                    <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-white/5 animate-in fade-in zoom-in-95" style={{ animationDelay: `${i * 100 + 400}ms` }}>
-                        <stat.icon className={`w-8 h-8 text-${stat.color}-500 mx-auto mb-3`} />
-                        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">{stat.value}</div>
-                        <div className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">{stat.label}</div>
+                    <div key={i} className="bg-[#280c2d]/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_0_20px_rgba(40,12,45,0.6)] border border-[#fae78e]/20 group hover:border-[#fae78e] transition-colors animate-in fade-in zoom-in-95" style={{ animationDelay: `${i * 100 + 400}ms` }}>
+                        <stat.icon className="w-8 h-8 text-[#fae78e] mx-auto mb-3 drop-shadow-[0_0_8px_rgba(250,231,142,0.6)]" />
+                        <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                        <div className="text-xs uppercase tracking-wider text-slate-400 font-bold group-hover:text-[#fae78e] transition-colors">{stat.label}</div>
                     </div>
                 ))}
             </div>
         </div>
-        <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
       </section>
 
-      {/* Ministry Deep Dive (New 'Ministry Details' Section) */}
-      <section id="ministry-details" className="py-20 bg-white dark:bg-slate-950 transition-colors">
+      {/* Featured Video Section Below Details */}
+      <section className="py-16 bg-[#0a0a0a] border-b border-[#fae78e]/10">
+         <div className="max-w-5xl mx-auto px-4">
+            <div className="flex flex-col items-center mb-8 text-center">
+                <div className="inline-block px-4 py-1 rounded-full bg-[#fae78e]/10 border border-[#fae78e]/30 text-[#fae78e] text-[10px] font-bold uppercase tracking-widest mb-3">
+                   Featured
+                </div>
+                <h3 className="text-2xl font-bold text-white">Ministry in Action</h3>
+            </div>
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(40,12,45,0.6)] border border-[#fae78e]/20 group">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" className="w-full h-full object-cover opacity-70 group-hover:opacity-50 transition-opacity duration-500" alt="Ministry Video" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <button className="w-20 h-20 bg-[#fae78e] rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_#fae78e] group-hover:scale-110 transition-transform">
+                        <Play className="w-8 h-8 text-[#280c2d] fill-[#280c2d]" />
+                    </button>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+                    <h4 className="text-white font-bold text-xl">Global Crusade Highlights</h4>
+                    <p className="text-slate-300 text-sm">Witness the power of God moving across nations.</p>
+                </div>
+            </div>
+         </div>
+      </section>
+
+      {/* Ministry Deep Dive */}
+      <section id="ministry-details" className="py-20 bg-black relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-                <h3 className="font-display text-4xl font-bold text-slate-900 dark:text-white mb-4">Ministry Deep Dive</h3>
-                <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Detailed information about our core expressions, programs, and mission focuses.</p>
-                <div className="w-24 h-1 bg-indigo-500 mx-auto mt-6 rounded-full"></div>
+                <h3 className="font-display text-4xl font-bold text-white mb-4">Ministry Deep Dive</h3>
+                <div className="w-24 h-1 bg-[#fae78e] mx-auto mt-6 rounded-full shadow-[0_0_10px_#fae78e]"></div>
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12 p-1.5 bg-slate-100 dark:bg-slate-800/50 rounded-2xl max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-2 mb-12 p-1.5 bg-[#280c2d] rounded-2xl max-w-4xl mx-auto border border-[#fae78e]/20">
               {ministryDetails.map((detail, idx) => (
                 <button
                   key={detail.id}
                   onClick={() => setActiveTab(idx)}
                   className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all ${
                     activeTab === idx 
-                      ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-lg scale-105' 
-                      : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                      ? 'bg-[#fae78e] text-[#280c2d] shadow-[0_0_15px_rgba(250,231,142,0.4)]' 
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <detail.icon className={`w-5 h-5 ${activeTab === idx ? 'text-indigo-500' : ''}`} />
+                  <detail.icon className={`w-5 h-5 ${activeTab === idx ? 'text-[#280c2d]' : 'text-[#fae78e]'}`} />
                   <span className="text-sm whitespace-nowrap">{detail.title}</span>
                 </button>
               ))}
             </div>
 
             {/* Tab Panel Content */}
-            <div className="bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-white/5 overflow-hidden transition-all duration-500">
+            <div className="bg-[#1a1a1a] rounded-[2.5rem] shadow-2xl border border-[#fae78e]/10 overflow-hidden transition-all duration-500">
                <div className="flex flex-col lg:flex-row">
                  {/* Overview Column */}
-                 <div className="lg:w-2/5 p-8 md:p-12 bg-indigo-50/30 dark:bg-indigo-900/10 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-white/5">
-                    <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center mb-8 shadow-xl">
-                      {React.createElement(ministryDetails[activeTab].icon, { className: "w-8 h-8 text-white" })}
+                 <div className="lg:w-2/5 p-8 md:p-12 bg-[#280c2d] border-b lg:border-b-0 lg:border-r border-[#fae78e]/10 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#fae78e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                    <div className="w-16 h-16 rounded-2xl bg-[#fae78e] flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(250,231,142,0.3)]">
+                      {React.createElement(ministryDetails[activeTab].icon, { className: "w-8 h-8 text-[#280c2d]" })}
                     </div>
-                    <h4 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-2">{ministryDetails[activeTab].title}</h4>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-bold uppercase text-xs mb-6 tracking-widest">{ministryDetails[activeTab].subtitle}</p>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-10 text-lg italic">
+                    <h4 className="text-3xl font-display font-bold text-white mb-2">{ministryDetails[activeTab].title}</h4>
+                    <p className="text-[#fae78e] font-bold uppercase text-xs mb-6 tracking-widest">{ministryDetails[activeTab].subtitle}</p>
+                    <p className="text-slate-300 leading-relaxed mb-10 text-lg italic font-light border-l-2 border-[#fae78e]/30 pl-4">
                       "{ministryDetails[activeTab].description}"
                     </p>
-                    <button className="flex items-center gap-2 px-8 py-3.5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-lg active:scale-95 group">
+                    <button className="flex items-center gap-2 px-8 py-3.5 bg-black text-white border border-[#fae78e]/30 font-bold rounded-xl hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-lg active:scale-95 group">
                       {ministryDetails[activeTab].cta}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
@@ -307,46 +231,34 @@ const MinistriesPage: React.FC = () => {
                  <div className="lg:w-3/5 p-8 md:p-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div>
-                        <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
-                          <Globe className="w-4 h-4 text-indigo-500" /> Outreach Programs
+                        <h5 className="font-bold text-[#fae78e] uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
+                          <Globe className="w-4 h-4" /> Outreach Programs
                         </h5>
                         <ul className="space-y-4">
                           {ministryDetails[activeTab].outreach.map((item, i) => (
                             <li key={i} className="flex items-start gap-3 group">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-slate-600 dark:text-slate-300 text-sm">{item}</span>
+                              <CheckCircle2 className="w-4 h-4 text-[#fae78e] shrink-0 mt-0.5" />
+                              <span className="text-slate-300 text-sm">{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-amber-500" /> Weekly Schedule
+                        <h5 className="font-bold text-[#fae78e] uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
+                          <Clock className="w-4 h-4" /> Weekly Schedule
                         </h5>
                         <div className="space-y-3">
                           {ministryDetails[activeTab].schedule.map((item, i) => (
-                            <div key={i} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-white/5 flex justify-between items-center transition-transform hover:scale-[1.02]">
+                            <div key={i} className="p-4 rounded-xl bg-[#280c2d] border border-[#fae78e]/10 flex justify-between items-center transition-transform hover:scale-[1.02] shadow-sm">
                               <div>
-                                <p className="font-bold text-slate-900 dark:text-white text-xs">{item.event}</p>
-                                <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-tighter">{item.day}</p>
+                                <p className="font-bold text-white text-xs">{item.event}</p>
+                                <p className="text-[10px] text-slate-400 uppercase tracking-tighter">{item.day}</p>
                               </div>
-                              <span className="text-[10px] font-bold text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded">{item.time}</span>
+                              <span className="text-[10px] font-bold text-[#280c2d] bg-[#fae78e] px-2 py-1 rounded">{item.time}</span>
                             </div>
                           ))}
                         </div>
                       </div>
-                    </div>
-                    {/* Involvement Footer */}
-                    <div className="mt-12 p-6 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-500/20">
-                        <h5 className="font-bold text-amber-900 dark:text-amber-400 mb-2 flex items-center gap-2">
-                          <HandHeart className="w-5 h-5" /> How to Support
-                        </h5>
-                        <p className="text-amber-800/80 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                          {ministryDetails[activeTab].involvement}
-                        </p>
-                        <button className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 hover:gap-2 transition-all group">
-                            Partner as a volunteer <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                        </button>
                     </div>
                  </div>
                </div>
@@ -354,18 +266,16 @@ const MinistriesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Global Impact Interactive Map (Requested Section) */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900 transition-colors overflow-hidden">
+      {/* Global Impact Interactive Map */}
+      <section className="py-24 bg-[#050505] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-                <h2 className="text-sm uppercase tracking-[0.3em] font-bold text-indigo-600 dark:text-indigo-400 mb-4">Global Reach</h2>
-                <h3 className="font-display text-4xl font-bold text-slate-900 dark:text-white mb-6">15+ Countries Impacted</h3>
-                <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
-                   Active ministry and digital outreach spanning across continents, bringing hope to millions globally through our various arms.
-                </p>
+                <h2 className="text-sm uppercase tracking-[0.3em] font-bold text-[#fae78e] mb-4">Global Reach</h2>
+                <h3 className="font-display text-4xl font-bold text-white mb-6">15+ Countries Impacted</h3>
             </div>
 
-            <div className="relative bg-white dark:bg-slate-800 rounded-[3rem] p-6 md:p-12 border border-slate-200 dark:border-white/5 shadow-2xl overflow-hidden min-h-[500px] flex items-center justify-center">
+            <div className="relative bg-[#280c2d] rounded-[3rem] p-6 md:p-12 border border-[#fae78e]/10 shadow-[0_0_50px_rgba(40,12,45,0.5)] overflow-hidden min-h-[500px] flex items-center justify-center">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(250,231,142,0.05),transparent_70%)]"></div>
                 <WorldMapSVG>
                     {impactedCountries.map((country) => (
                       <g 
@@ -374,91 +284,62 @@ const MinistriesPage: React.FC = () => {
                         onMouseLeave={() => setHoveredCountry(null)}
                         className="cursor-pointer"
                       >
-                        {/* Interactive Dot */}
-                        <circle 
-                            cx={country.x} 
-                            cy={country.y} 
-                            r="6" 
-                            className={`fill-indigo-600 transition-all duration-300 ${hoveredCountry === country.id ? 'scale-150 fill-amber-500' : ''}`} 
-                        />
-                        {/* Pulse effect */}
-                        <circle 
-                            cx={country.x} 
-                            cy={country.y} 
-                            r="15" 
-                            className={`fill-indigo-400/20 animate-ping pointer-events-none ${hoveredCountry === country.id ? 'opacity-100' : 'opacity-0'}`} 
-                        />
-                        {/* Country Tooltip */}
+                        <circle cx={country.x} cy={country.y} r="6" className={`fill-[#fae78e] transition-all duration-300 ${hoveredCountry === country.id ? 'scale-150 fill-white' : ''}`} />
+                        <circle cx={country.x} cy={country.y} r="15" className={`fill-[#fae78e]/20 animate-ping pointer-events-none ${hoveredCountry === country.id ? 'opacity-100' : 'opacity-0'}`} />
                         {hoveredCountry === country.id && (
                           <foreignObject x={country.x + 15} y={country.y - 60} width="220" height="120" className="overflow-visible z-50 pointer-events-none">
-                            <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-2xl border border-indigo-100 dark:border-white/10 animate-in fade-in zoom-in-95">
+                            <div className="bg-[#000] p-4 rounded-2xl shadow-2xl border border-[#fae78e] animate-in fade-in zoom-in-95">
                                <div className="flex items-center gap-2 mb-2">
                                   <span className="text-xl">{country.flag}</span>
-                                  <h6 className="font-bold text-slate-900 dark:text-white text-sm">{country.name}</h6>
+                                  <h6 className="font-bold text-white text-sm">{country.name}</h6>
                                </div>
-                               <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-tight">
-                                  {country.work}
-                                </p>
+                               <p className="text-[11px] text-[#fae78e] leading-tight">{country.work}</p>
                             </div>
                           </foreignObject>
                         )}
                       </g>
                     ))}
                 </WorldMapSVG>
-                {/* Legend / Tip */}
-                <div className="absolute bottom-8 right-8 bg-indigo-600 text-white text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest hidden md:flex items-center gap-2 shadow-lg">
-                    <MapIcon className="w-3 h-3" /> Hover markers for ministry work details
+                <div className="absolute bottom-8 right-8 bg-[#fae78e] text-[#280c2d] text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest hidden md:flex items-center gap-2 shadow-[0_0_15px_rgba(250,231,142,0.5)]">
+                    <MapIcon className="w-3 h-3" /> Hover markers for details
                 </div>
             </div>
         </div>
       </section>
 
-      {/* Featured Core Overview */}
-      <section className="py-20 bg-white dark:bg-slate-950">
+      {/* Core Overview */}
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-                <h3 className="font-display text-3xl font-bold text-slate-900 dark:text-white mb-4">Core Overview</h3>
-                <div className="w-24 h-1 bg-indigo-500 mx-auto rounded-full"></div>
+                <h3 className="font-display text-3xl font-bold text-white mb-4">Core Overview</h3>
+                <div className="w-24 h-1 bg-[#fae78e] mx-auto rounded-full"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {featured.map((item, i) => (
                     <div 
                         key={i} 
-                        className="group bg-slate-50 dark:bg-slate-900/40 p-8 rounded-3xl border border-slate-200 dark:border-white/5 hover:border-indigo-500/30 transition-all duration-500 shadow-lg hover:shadow-2xl hover:-translate-y-2"
-                        style={{ animationDelay: `${i * 150}ms` }}
+                        className="group bg-[#280c2d] p-8 rounded-3xl border border-[#fae78e]/10 hover:border-[#fae78e]/50 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(40,12,45,0.8)] hover:-translate-y-2 relative overflow-hidden"
                     >
-                        <div className="flex items-start justify-between mb-6">
-                            <div className={`p-4 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 shadow-inner group-hover:scale-110 transition-transform`}>
-                                <item.icon className="w-8 h-8" />
-                            </div>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{item.tag}</span>
-                        </div>
-                        <h4 className="text-2xl font-display font-bold text-slate-900 dark:text-white mb-2">{item.title}</h4>
-                        <div className="text-indigo-500 dark:text-indigo-400 font-semibold text-xs mb-4 italic tracking-wide">Expression: {item.expression}</div>
+                        {/* Glow effect */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#fae78e]/5 rounded-full blur-3xl group-hover:bg-[#fae78e]/10 transition-colors"></div>
                         
-                        <div className="space-y-4 mb-8">
-                            <div className="flex gap-3">
-                                <div className="mt-1"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div></div>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                                    <strong className="text-slate-900 dark:text-white">Focus:</strong> {item.focus}
-                                </p>
+                        <div className="flex items-start justify-between mb-6">
+                            <div className={`p-4 rounded-2xl bg-[#000] text-[#fae78e] shadow-inner group-hover:scale-110 transition-transform border border-[#fae78e]/20`}>
+                                <item.icon className="w-8 h-8 drop-shadow-[0_0_5px_rgba(250,231,142,0.5)]" />
                             </div>
-                            <div className="flex gap-3">
-                                <div className="mt-1"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div></div>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                                    <strong className="text-slate-900 dark:text-white">Purpose:</strong> {item.purpose}
-                                </p>
-                            </div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{item.tag}</span>
                         </div>
-
+                        <h4 className="text-2xl font-display font-bold text-white mb-2">{item.title}</h4>
+                        <div className="text-[#fae78e] font-semibold text-xs mb-4 italic tracking-wide">Focus: {item.focus}</div>
+                        
                         <button 
                           onClick={() => {
                             const target = document.getElementById('ministry-details');
                             target?.scrollIntoView({ behavior: 'smooth' });
                             setActiveTab(i);
                           }}
-                          className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-4 transition-all text-sm"
+                          className="flex items-center gap-2 text-white/70 hover:text-[#fae78e] font-bold hover:gap-4 transition-all text-sm"
                         >
                             Deep Dive <ArrowRight className="w-4 h-4" />
                         </button>
@@ -469,22 +350,21 @@ const MinistriesPage: React.FC = () => {
       </section>
 
       {/* Ministry Arms */}
-      <section className="py-20 bg-indigo-600 dark:bg-indigo-950 text-white overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+      <section className="py-20 bg-[#280c2d] text-white overflow-hidden relative border-t border-[#fae78e]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
                 <h3 className="font-display text-4xl font-bold mb-4">Our Specialized Arms</h3>
-                <p className="text-indigo-100 max-w-2xl mx-auto text-lg">Targeted spiritual and practical support for various groups.</p>
+                <p className="text-slate-400 max-w-2xl mx-auto text-lg">Targeted spiritual and practical support for various groups.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {arms.map((arm, i) => (
-                    <div key={i} className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/20 transition-all duration-300 flex flex-col items-center text-center group" style={{ animationDelay: `${i * 200}ms` }}>
-                        <div className="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center mb-6 shadow-lg group-hover:rotate-12 transition-transform">
-                            <arm.icon className="w-8 h-8 text-white" />
+                    <div key={i} className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-[#fae78e]/10 hover:border-[#fae78e]/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-2 shadow-xl">
+                        <div className="w-16 h-16 rounded-full bg-[#fae78e] flex items-center justify-center mb-6 shadow-[0_0_20px_#fae78e] group-hover:rotate-12 transition-transform">
+                            <arm.icon className="w-8 h-8 text-[#280c2d]" />
                         </div>
                         <h4 className="text-xl font-bold mb-4">{arm.title}</h4>
-                        <p className="text-indigo-50 text-sm leading-relaxed mb-8 flex-grow">{arm.description}</p>
-                        <button className="px-8 py-2.5 bg-white text-indigo-600 font-bold rounded-full hover:bg-amber-400 hover:text-white transition-all shadow-md">
+                        <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-grow">{arm.description}</p>
+                        <button className="px-8 py-2.5 bg-transparent border border-[#fae78e] text-[#fae78e] font-bold rounded-full hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-[0_0_10px_rgba(250,231,142,0.2)]">
                             {arm.btn}
                         </button>
                     </div>
@@ -493,70 +373,15 @@ const MinistriesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Resources & Latest Devotionals */}
-      <section className="py-20 bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16">
-                <div>
-                    <h3 className="font-display text-3xl font-bold text-slate-900 dark:text-white mb-2">Daily Devotionals</h3>
-                    <p className="text-slate-500 dark:text-slate-400">Fresh inspiration for your daily spiritual journey.</p>
-                </div>
-                <button className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-all shadow-lg active:scale-95">
-                    View Archive
-                </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {devotionals.map((dev, i) => (
-                    <div key={i} className="group bg-slate-50 dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-white/5 transition-all hover:shadow-2xl hover:bg-white dark:hover:bg-slate-800">
-                        <div className="flex gap-4 mb-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                          <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-indigo-500" /> {dev.date}</span>
-                          <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-amber-500" /> {dev.read}</span>
-                        </div>
-                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-indigo-600 transition-colors">{dev.title}</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed line-clamp-3">{dev.desc}</p>
-                        <button className="text-indigo-600 dark:text-indigo-400 font-bold flex items-center gap-2 text-sm group/btn">
-                          Read Full Article <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-      </section>
-
-      {/* Watch & Listen Channels */}
-      <section className="py-20 bg-slate-50 dark:bg-slate-900/50 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[
-                    { title: 'YouTube Channel', icon: Youtube, desc: 'Watch sermons, teachings, and highlights on our official channel.', btn: 'Subscribe', color: 'red' },
-                    { title: 'Podcast Episodes', icon: Headphones, desc: 'Listen to weekly podcasts featuring inspiring faith messages.', btn: 'Listen Now', color: 'indigo' },
-                    { title: 'Media Library', icon: Library, desc: 'Browse our collection of free spiritual resources and articles.', btn: 'Browse', color: 'amber' },
-                ].map((media, i) => (
-                    <div key={i} className="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-white/5 flex flex-col items-center text-center group hover:scale-[1.03] transition-all shadow-md">
-                        <div className={`p-5 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 mb-6 group-hover:text-indigo-500 transition-colors`}>
-                            <media.icon className="w-8 h-8" />
-                        </div>
-                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{media.title}</h4>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow leading-relaxed">{media.desc}</p>
-                        <button className="w-full py-3.5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-lg">
-                            {media.btn}
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-      </section>
-
       {/* Support / Footer Branding */}
-      <div className="py-24 bg-slate-900 text-center border-t border-white/10 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(99,102,241,0.15) 0%, transparent 70%)' }}></div>
-          <Star className="w-10 h-10 text-amber-500 mx-auto mb-8 animate-pulse" />
+      <div className="py-24 bg-black text-center border-t border-[#fae78e]/10 relative overflow-hidden">
+          <Star className="w-10 h-10 text-[#fae78e] mx-auto mb-8 animate-pulse drop-shadow-[0_0_10px_#fae78e]" />
           <p className="text-3xl md:text-4xl font-display font-bold text-white italic max-w-4xl mx-auto px-4 mb-6 leading-tight">
             "Ministering through Creativity for the Kingdom of God"
           </p>
-          <p className="text-indigo-400 uppercase tracking-[0.5em] text-xs font-bold mb-10">Kachi Emmanuel Ministries</p>
-          <button className="px-12 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto">
-             <Zap className="w-5 h-5 text-amber-400 fill-current" />
+          <p className="text-[#fae78e] uppercase tracking-[0.5em] text-xs font-bold mb-10">Kachi Emmanuel Ministries</p>
+          <button className="px-12 py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-extrabold rounded-full shadow-[0_0_20px_#fae78e] transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto">
+             <Zap className="w-5 h-5 text-[#280c2d] fill-current" />
              Support the Mission
           </button>
       </div>

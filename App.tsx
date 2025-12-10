@@ -10,6 +10,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import ConnectSection from './components/ConnectSection';
 import PartnerSection from './components/PartnerSection';
 import ContactSection from './components/ContactSection';
+import VideoSection from './components/VideoSection';
 import Footer from './components/Footer';
 import DevotionalModal from './components/DevotionalModal';
 
@@ -67,6 +68,7 @@ const App: React.FC = () => {
           <>
             <HeroSection onNavigate={handleNavigate} />
             <AboutSection isSimple={true} />
+            <VideoSection />
             <MinistriesSection onNavigate={handleNavigate} />
             <GallerySection />
             <TestimonialsSection />
@@ -91,7 +93,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen transition-colors duration-300 flex flex-col">
+    <div className="min-h-screen transition-colors duration-300 flex flex-col bg-white dark:bg-black text-slate-900 dark:text-white">
       <Navbar 
         isDarkMode={isDarkMode} 
         toggleDarkMode={() => setIsDarkMode(!isDarkMode)} 
