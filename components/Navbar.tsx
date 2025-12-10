@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sun, Moon, Menu, X, Home, Info, Heart, Users, Mail, BookOpenText } from 'lucide-react';
+import { Menu, X, Home, Info, Heart, Users, Mail, BookOpenText } from 'lucide-react';
 import { Page } from '../App';
 
 interface NavbarProps {
@@ -9,7 +9,7 @@ interface NavbarProps {
   currentPage: Page;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, onNavigate, currentPage }) => {
+const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -26,55 +26,48 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, onNavigate,
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-[#1a1a1a]/95 backdrop-blur-lg border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-[#280c2d]/90 backdrop-blur-lg border-b border-[#fae78e]/20 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         <button 
           onClick={() => handleLinkClick('home', 'home')}
-          className="flex items-center gap-2 focus:outline-none group"
+          className="flex items-center gap-3 focus:outline-none group"
         >
-          <BookOpenText className="w-7 h-7 text-[#FFDE59] dark:text-[#FFDE59] brightness-90" />
-          <span className="font-display font-bold text-xl md:text-2xl tracking-tight text-[#1a1a1a] dark:text-white">
-            Kachi Emmanuel <span className="text-[#FFDE59] drop-shadow-sm text-shadow">Ministries</span>
+          <div className="p-2 bg-[#fae78e] rounded-lg shadow-[0_0_15px_rgba(250,231,142,0.3)]">
+             <BookOpenText className="w-6 h-6 text-[#280c2d]" />
+          </div>
+          <span className="font-display font-bold text-xl md:text-2xl tracking-tight text-white">
+            Kachi Emmanuel <span className="text-[#fae78e]">Ministries</span>
           </span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => handleLinkClick(link.page as Page, (link as any).section)}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors relative group ${
-                currentPage === link.page ? 'text-[#1a1a1a] dark:text-[#FFDE59]' : 'text-slate-500 hover:text-[#1a1a1a] dark:hover:text-[#FFDE59]'
+              className={`text-sm font-bold uppercase tracking-widest transition-colors relative group py-2 ${
+                currentPage === link.page ? 'text-[#fae78e]' : 'text-slate-300 hover:text-white'
               }`}
             >
               {link.name}
-              <span className={`absolute left-0 -bottom-1 h-0.5 bg-[#FFDE59] transition-all duration-300 ${
-                  currentPage === link.page ? 'w-full' : 'w-0 group-hover:w-full'
+              <span className={`absolute left-0 bottom-0 h-0.5 bg-[#fae78e] transition-all duration-300 ${
+                  currentPage === link.page ? 'w-full shadow-[0_0_10px_#fae78e]' : 'w-0 group-hover:w-full'
               }`}></span>
             </button>
           ))}
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-colors ml-4"
-          >
-            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
         </nav>
 
         <div className="md:hidden flex items-center gap-4">
-            <button onClick={toggleDarkMode} className="text-slate-600 dark:text-slate-300">
-                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-900 dark:text-white">
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-[#fae78e]">
+                {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
         </div>
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[60] bg-white dark:bg-[#1a1a1a] flex flex-col p-8">
+        <div className="md:hidden fixed inset-0 z-[60] bg-[#000000] flex flex-col p-8 border-l border-[#fae78e]/20">
           <div className="flex justify-end mb-8">
-            <button onClick={() => setIsMenuOpen(false)} className="text-[#1a1a1a] dark:text-white">
+            <button onClick={() => setIsMenuOpen(false)} className="text-[#fae78e]">
               <X className="w-8 h-8" />
             </button>
           </div>
@@ -83,9 +76,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, onNavigate,
               <button
                 key={link.name}
                 onClick={() => handleLinkClick(link.page as Page, (link as any).section)}
-                className="flex items-center gap-4 text-2xl font-bold text-[#1a1a1a] dark:text-white"
+                className="flex items-center gap-4 text-2xl font-bold text-white hover:text-[#fae78e] transition-colors"
               >
-                <link.icon className="w-6 h-6 text-[#FFDE59]" />
+                <link.icon className="w-6 h-6 text-[#fae78e]" />
                 {link.name}
               </button>
             ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Church, Lightbulb, ArrowRight, HandHeart, Users } from 'lucide-react';
+import { BookOpen, Church, ArrowRight, HandHeart, Users } from 'lucide-react';
 import { Page } from '../App';
 
 interface MinistriesSectionProps {
@@ -39,30 +39,31 @@ const MinistriesSection: React.FC<MinistriesSectionProps> = ({ onNavigate }) => 
   ];
 
   return (
-    <section id="ministries" className="py-24 bg-slate-50 dark:bg-[#1a1a1a] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="ministries" className="py-24 bg-black relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d]/20 to-black pointer-events-none"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-xs uppercase tracking-[0.4em] font-bold text-[#eab308] dark:text-[#FFDE59] mb-4">Ministries Overview</h2>
-          <h3 className="font-display text-4xl md:text-5xl font-extrabold text-[#1a1a1a] dark:text-white">Transforming Lives Everywhere</h3>
+          <h2 className="text-xs uppercase tracking-[0.4em] font-bold text-[#fae78e] mb-4">Ministries Overview</h2>
+          <h3 className="font-display text-4xl md:text-5xl font-extrabold text-white">Transforming Lives Everywhere</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {ministries.map((m, i) => (
-            <div key={i} className="bg-white dark:bg-white/5 rounded-3xl overflow-hidden shadow-lg border border-slate-100 dark:border-white/10 group hover:-translate-y-2 transition-all duration-500">
+            <div key={i} className="bg-[#280c2d] rounded-[2rem] overflow-hidden shadow-lg border border-[#fae78e]/10 group hover:-translate-y-2 hover:border-[#fae78e]/40 transition-all duration-500">
               <div className="h-48 overflow-hidden relative">
-                <img src={m.image} alt={m.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#FFDE59]/80 to-transparent"></div>
+                <img src={m.image} alt={m.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#280c2d] to-transparent"></div>
               </div>
               <div className="p-8">
-                <div className="w-10 h-10 bg-[#FFDE59]/20 rounded-xl flex items-center justify-center mb-6">
-                  <m.icon className="w-5 h-5 text-black dark:text-[#FFDE59]" />
+                <div className="w-12 h-12 bg-[#fae78e] rounded-xl flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(250,231,142,0.3)]">
+                  <m.icon className="w-6 h-6 text-[#280c2d]" />
                 </div>
-                <h4 className="text-xl font-bold text-[#1a1a1a] dark:text-white mb-2">{m.title}</h4>
-                <p className="text-[#1a1a1a] text-xs font-bold uppercase tracking-widest mb-4">{m.subtitle}</p>
-                <p className="text-sm text-slate-500 mb-8 leading-relaxed">{m.description}</p>
+                <h4 className="text-xl font-bold text-white mb-2">{m.title}</h4>
+                <p className="text-[#fae78e] text-xs font-bold uppercase tracking-widest mb-4 opacity-80">{m.subtitle}</p>
+                <p className="text-sm text-slate-300 mb-8 leading-relaxed font-light">{m.description}</p>
                 <button 
                   onClick={() => onNavigate?.('ministries')}
-                  className="flex items-center gap-2 text-black dark:text-[#FFDE59] font-bold text-sm hover:gap-4 transition-all group/btn"
+                  className="flex items-center gap-2 text-[#fae78e] font-bold text-sm hover:gap-4 transition-all group/btn"
                 >
                   Learn More <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                 </button>

@@ -9,7 +9,7 @@ const PartnerSection: React.FC = () => {
       description: 'Join the volunteer team for events, media, administration, intercession, and campus outreaches.',
       icon: Users,
       buttonText: 'Serve With Us',
-      color: 'indigo',
+      highlight: false,
     },
     {
       title: 'One-Time Gift',
@@ -17,7 +17,6 @@ const PartnerSection: React.FC = () => {
       description: 'Your one-time gift fuels media production, campus invasions, and support for mission projects.',
       icon: Gift,
       buttonText: 'Give a Seed',
-      color: 'amber',
       highlight: true,
     },
     {
@@ -26,19 +25,19 @@ const PartnerSection: React.FC = () => {
       description: 'Commit to a monthly gift that helps sustain ongoing outreaches, discipleship platforms, and media missions.',
       icon: DollarSign,
       buttonText: 'Start Partnership',
-      color: 'purple',
+      highlight: false,
     },
   ];
 
   return (
-    <section id="partner" className="py-20 md:py-32 bg-white dark:bg-slate-950 transition-colors duration-300 animate-in fade-in">
+    <section id="partner" className="py-20 md:py-32 bg-black transition-colors duration-300 animate-in fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-in fade-in slide-in-from-top-8 duration-700">
-          <h2 className="text-sm md:text-base uppercase tracking-widest font-bold text-indigo-700 dark:text-indigo-400 mb-3 flex items-center justify-center gap-2">
+          <h2 className="text-sm md:text-base uppercase tracking-widest font-bold text-[#fae78e] mb-3 flex items-center justify-center gap-2">
             <Handshake className="w-5 h-5" />
             Partner With Us
           </h2>
-          <h3 className="font-display text-3xl sm:text-4xl font-bold leading-tight text-slate-900 dark:text-white">
+          <h3 className="font-display text-3xl sm:text-4xl font-bold leading-tight text-white">
             Become a Covenant Partner
           </h3>
         </div>
@@ -47,31 +46,34 @@ const PartnerSection: React.FC = () => {
           {partnershipOptions.map((option, index) => (
             <div
               key={index}
-              className={`relative bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 dark:border-white/10 group hover:border-${option.color}-500/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 delay-${index * 100} duration-700`}
+              className={`relative bg-[#280c2d] rounded-[2rem] p-8 flex flex-col items-center text-center shadow-lg border border-[#fae78e]/10 group hover:border-[#fae78e]/50 hover:-translate-y-2 transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 delay-${index * 100} duration-700`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {option.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#fae78e] text-[#280c2d] text-[10px] font-bold uppercase tracking-wider rounded-full shadow-[0_0_15px_#fae78e]">
                   Most Popular
                 </div>
               )}
-              <div className={`p-4 rounded-full bg-${option.color}-100 dark:bg-${option.color}-900/30 text-${option.color}-700 dark:text-${option.color}-400 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`p-5 rounded-2xl bg-black border border-[#fae78e]/20 text-[#fae78e] mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
                 <option.icon className="w-8 h-8" />
               </div>
-              <h4 className="font-display text-xl font-bold mb-2 text-slate-900 dark:text-white">
+              <h4 className="font-display text-xl font-bold mb-2 text-white">
                 {option.title}
               </h4>
-              <p className={`text-sm font-semibold text-${option.color}-600 dark:text-${option.color}-300 mb-4`}>
+              <p className={`text-sm font-semibold text-[#fae78e]/80 mb-4 uppercase tracking-wide`}>
                 {option.subtitle}
               </p>
-              <p className="text-slate-600 dark:text-slate-300 text-sm flex-grow mb-8 leading-relaxed">
+              <p className="text-slate-300 text-sm flex-grow mb-8 leading-relaxed font-light">
                 {option.description}
               </p>
               
-              {/* Updated Button: Smaller and Better */}
               <a
                 href="#"
-                className={`inline-flex items-center px-6 py-2.5 text-sm font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95 group-hover:bg-${option.color}-600 group-hover:text-white bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:border-transparent`}
+                className={`inline-flex items-center px-8 py-3 text-sm font-bold rounded-xl transition-all duration-300 shadow-lg transform active:scale-95 ${
+                  option.highlight 
+                  ? 'bg-[#fae78e] text-[#280c2d] hover:bg-white' 
+                  : 'bg-black text-white border border-[#fae78e]/30 hover:border-[#fae78e] hover:text-[#fae78e]'
+                }`}
                 aria-label={option.buttonText}
               >
                 {option.buttonText}
@@ -81,9 +83,9 @@ const PartnerSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="text-center mt-20 text-slate-500 dark:text-slate-400 font-serif-display text-base md:text-lg animate-in fade-in duration-700 delay-300">
-          <p className="mb-2">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." - John 3:16</p>
-          <p className="font-bold text-indigo-600 dark:text-indigo-400">Jesus loves you</p>
+        <div className="text-center mt-20 text-slate-400 font-serif-display text-base md:text-lg animate-in fade-in duration-700 delay-300">
+          <p className="mb-2 italic">"For God so loved the world that he gave his one and only Son..." - John 3:16</p>
+          <p className="font-bold text-[#fae78e]">Jesus loves you</p>
         </div>
       </div>
     </section>

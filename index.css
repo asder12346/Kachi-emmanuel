@@ -3,18 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #FFDE59;
-  --color-secondary: #1a1a1a;
-  --color-dark: #1a1a1a;
-  --color-light: #ffffff;
+  --color-primary: #280c2d;
+  --color-secondary: #fae78e;
+  --color-bg: #000000;
+  --color-text: #ffffff;
 }
 
 @layer base {
   body {
-    @apply bg-white text-[#1a1a1a] transition-colors duration-300;
-  }
-  .dark body {
-    @apply bg-[#1a1a1a] text-white;
+    @apply bg-black text-white transition-colors duration-300;
   }
 }
 
@@ -23,7 +20,6 @@
   .text-primary { color: var(--color-primary); }
   .bg-secondary { background-color: var(--color-secondary); }
   .text-secondary { color: var(--color-secondary); }
-  .bg-dark { background-color: var(--color-dark); }
   
   .animate-in {
     animation-duration: 0.6s;
@@ -69,4 +65,20 @@
 
 .animate-float {
   animation: float 5s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #280c2d;
+  border: 1px solid #fae78e;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fae78e;
 }
