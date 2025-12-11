@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Camera } from 'lucide-react';
-import ImageCarousel from './ImageCarousel'; // Import the new carousel component
+import ImageCarousel from './ImageCarousel'; 
 
 const GalleryItem: React.FC<{ img: { src: string; alt: string; caption: string }; index: number }> = ({ img, index }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,14 +48,14 @@ const GalleryItem: React.FC<{ img: { src: string; alt: string; caption: string }
 const GallerySection: React.FC = () => {
   const galleryImages = [
     { src: 'https://bezaleelforge.github.io/kachi/17.jpg', alt: 'Founder Kachi Emmanuel', caption: 'Founder Kachi Emmanuel' },
-    { src: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Ministry Event', caption: 'Ministry Event' },
-    { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Bible Study', caption: 'Bible Study' },
-    { src: 'https://images.unsplash.com/photo-1555421689-d6847113196f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Prayer Session', caption: 'Prayer Session' },
-    { src: 'https://images.unsplash.com/photo-1517486851061-f09c25f48866?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Youth Program', caption: 'Youth Program' },
-    { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Outreach Day', caption: 'Outreach Day' },
-    { src: 'https://images.unsplash.com/photo-1522071820075-848f87e2b7e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Worship Night', caption: 'Worship Night' },
-    { src: 'https://images.unsplash.com/photo-1510525000516-ac69b827170d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Community Service', caption: 'Community Service' },
-    { src: 'https://images.unsplash.com/photo-1543269875-ae9a70719602?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Conference', caption: 'Conference' },
+    { src: 'https://bezaleelforge.github.io/kachi/20.jpg', alt: 'Teaching Ministry', caption: 'Believers Perspective Session' },
+    { src: 'https://bezaleelforge.github.io/kachi/10.jpg', alt: 'Community Outreach', caption: 'Global Impact Program' },
+    { src: 'https://bezaleelforge.github.io/kachi/13.jpg', alt: 'Spirit and Stature', caption: 'Faith and Excellence Seminar' },
+    { src: 'https://bezaleelforge.github.io/kachi/18.jpg', alt: 'Campus Invasion', caption: 'University Revival Meeting' },
+    { src: 'https://bezaleelforge.github.io/kachi/21.jpg', alt: 'Worship Experience', caption: 'In Presence Worship' },
+    { src: 'https://bezaleelforge.github.io/kachi/17.jpg', alt: 'Leadership Summit', caption: 'Ministry Leadership' },
+    { src: 'https://bezaleelforge.github.io/kachi/20.jpg', alt: 'Word Study', caption: 'Deep Spiritual Truths' },
+    { src: 'https://bezaleelforge.github.io/kachi/10.jpg', alt: 'Regional Crusade', caption: 'Healing and Salvation Crusade' },
   ];
 
   return (

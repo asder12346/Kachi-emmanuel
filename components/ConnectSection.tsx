@@ -8,13 +8,12 @@ const ConnectSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Subscribing email:', email);
-    // Simulate API call success
     setTimeout(() => {
       setShowSuccessMessage(true);
       setEmail('');
       setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 5000); // Hide success message after 5 seconds
+      }, 5000);
     }, 500);
   };
 
@@ -25,8 +24,8 @@ const ConnectSection: React.FC = () => {
     >
       {/* Parallax Background */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-40 grayscale group-hover:grayscale-0 transition-all duration-1000" 
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80")' }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-30 grayscale group-hover:grayscale-0 transition-all duration-1000" 
+        style={{ backgroundImage: 'url("https://bezaleelforge.github.io/kachi/21.jpg")' }}
       ></div>
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#280c2d] via-[#280c2d]/90 to-black"></div>
       

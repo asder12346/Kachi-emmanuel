@@ -64,7 +64,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 <div className="rounded-[2.5rem] overflow-hidden aspect-[4/5] relative">
                     <div className="absolute inset-0 bg-[#280c2d]/20 mix-blend-overlay z-10"></div>
                     <img 
-                        src="https://images.unsplash.com/photo-1511632765486-a01980968a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+                        src="https://bezaleelforge.github.io/kachi/18.jpg" 
                         alt="Kachi Emmanuel Impact" 
                         className="w-full h-full object-cover animate-float"
                     />

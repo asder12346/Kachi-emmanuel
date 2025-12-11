@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Calendar, 
@@ -48,7 +49,7 @@ const DevotionalsPage: React.FC = () => {
       When fear whispers that the road is too dark, remember that faith is the evidence of things not seen. Today, choose to lean on His Word more than your worries. Every step taken in faith is a step towards your divine destiny.`,
       category: 'Spiritual Growth',
       readTime: '5 min',
-      image: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://bezaleelforge.github.io/kachi/18.jpg'
     },
     {
       date: 'May 19, 2024',
@@ -62,7 +63,7 @@ const DevotionalsPage: React.FC = () => {
       You are not defined by your past mistakes or the labels others have placed on you. You are defined by what God says about you. Today, guard your thoughts and filter everything through the lens of truth.`,
       category: 'Mental Health',
       readTime: '4 min',
-      image: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://bezaleelforge.github.io/kachi/10.jpg'
     },
     {
       date: 'May 18, 2024',
@@ -76,7 +77,7 @@ const DevotionalsPage: React.FC = () => {
       Don't let the busyness of life rob you of your quiet time. Jesus Himself often withdrew to lonely places to pray. If the Son of God needed intimacy with the Father, how much more do we? Make time today to dwell under the shadow of the Almighty.`,
       category: 'Prayer',
       readTime: '6 min',
-      image: 'https://images.unsplash.com/photo-1555421689-d6847113196f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://bezaleelforge.github.io/kachi/21.jpg'
     },
     {
       date: 'May 17, 2024',
@@ -90,15 +91,13 @@ const DevotionalsPage: React.FC = () => {
       Bezalel in the Bible was filled with the Spirit of God for the specific purpose of artistic work for the Tabernacle. Your work is no less sacred. Today, ask the Holy Spirit to inspire your creative hands and mind to build something that points people back to Him.`,
       category: 'Purpose',
       readTime: '5 min',
-      image: 'https://images.unsplash.com/photo-1511632765486-a01980968a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://bezaleelforge.github.io/kachi/13.jpg'
     }
   ];
 
-  // SCROLL RESTORATION LOGIC
   useEffect(() => {
     const savedPos = sessionStorage.getItem('devotionals_scroll_y');
     if (savedPos) {
-      // Use a small timeout to ensure layout is complete and App.tsx's scroll-to-top has triggered
       const timer = setTimeout(() => {
         window.scrollTo({ top: parseInt(savedPos, 10), behavior: 'instant' as any });
       }, 150);
@@ -108,17 +107,13 @@ const DevotionalsPage: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Save current position
       sessionStorage.setItem('devotionals_scroll_y', window.scrollY.toString());
-      
-      // Update floating button visibility
       if (window.scrollY > 1000) {
         setShowScrollTop(true);
       } else {
         setShowScrollTop(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -127,17 +122,10 @@ const DevotionalsPage: React.FC = () => {
     const url = window.location.href;
     const text = `Read today's word: "${devotional.title}" at Kachi Emmanuel Ministries!`;
     let shareUrl = '';
-
     switch (platform) {
-      case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        break;
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-        break;
-      case 'whatsapp':
-        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
-        break;
+      case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`; break;
+      case 'twitter': shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`; break;
+      case 'whatsapp': shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`; break;
       case 'copy':
         navigator.clipboard.writeText(url);
         setCopySuccess(true);
@@ -158,8 +146,8 @@ const DevotionalsPage: React.FC = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://bezaleelforge.github.io/kachi/14.jpg" 
-            alt="Devotionals Background" 
+            src="https://bezaleelforge.github.io/kachi/21.jpg" 
+            alt="Atmospheric worship background representing the presence of God" 
             className="w-full h-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d]/80 to-black"></div>
@@ -181,8 +169,8 @@ const DevotionalsPage: React.FC = () => {
         <div className="max-w-5xl mx-auto bg-[#280c2d] rounded-[3rem] p-8 md:p-16 border border-[#fae78e]/20 shadow-2xl flex flex-col md:flex-row gap-12 items-center group">
             <div className="w-full md:w-1/2 aspect-square rounded-[2rem] overflow-hidden shadow-2xl relative">
                 <img 
-                    src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                    alt="Featured Devotional" 
+                    src="https://bezaleelforge.github.io/kachi/18.jpg" 
+                    alt="Young believers participating in a spiritual campus session" 
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-40"></div>
@@ -214,15 +202,15 @@ const DevotionalsPage: React.FC = () => {
                       Today, if your heart is troubled, look away from the storm and look unto Jesus. The same voice that commanded the winds can speak peace to your soul. Do not be anxious for anything, but in everything by prayer and supplication, let your requests be made known to God.`,
                       category: 'Peace',
                       readTime: '5 min',
-                      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                      image: 'https://bezaleelforge.github.io/kachi/20.jpg'
                     })}
-                    className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_15px_#fae78e] hover:bg-white hover:scale-105 transition-all flex items-center gap-2"
+                    className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_15px_#fae78e] hover:bg-white hover:scale-105 transition-all flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
                       Read Full Word <ArrowRight className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => handleShare('whatsapp', {title: 'The Peace that Surpasses Understanding'} as Devotional)}
-                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-[#25D366] text-white hover:text-white transition-all flex items-center justify-center border border-white/10"
+                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-[#25D366] text-white hover:text-white transition-all flex items-center justify-center border border-white/10 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     title="Share via WhatsApp"
                   >
                     <Share2 className="w-5 h-5" />
@@ -242,12 +230,12 @@ const DevotionalsPage: React.FC = () => {
                     placeholder="Search devotionals..." 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-6 py-4 rounded-2xl bg-[#280c2d]/50 border border-[#fae78e]/10 text-white focus:outline-none focus:border-[#fae78e] transition-colors"
+                    className="w-full pl-12 pr-6 py-4 rounded-2xl bg-[#280c2d]/50 border border-[#fae78e]/10 text-white focus:outline-none focus:border-[#fae78e] focus:ring-2 focus:ring-[#fae78e] transition-colors"
                 />
             </div>
             <div className="flex gap-4 overflow-x-auto pb-2 w-full md:w-auto">
                 {['All', 'Spiritual Growth', 'Prayer', 'Purpose', 'Faith'].map(cat => (
-                    <button key={cat} className="whitespace-nowrap px-6 py-2 rounded-full border border-[#fae78e]/20 text-xs font-bold uppercase tracking-widest hover:bg-[#fae78e] hover:text-[#280c2d] transition-all">
+                    <button key={cat} className="whitespace-nowrap px-6 py-2 rounded-full border border-[#fae78e]/20 text-xs font-bold uppercase tracking-widest hover:bg-[#fae78e] hover:text-[#280c2d] transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                         {cat}
                     </button>
                 ))}
@@ -259,10 +247,10 @@ const DevotionalsPage: React.FC = () => {
       <section className="px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredDevotionals.map((devo, i) => (
-                <div 
+                <button 
                   key={i} 
                   onClick={() => setSelectedDevotional(devo)}
-                  className="bg-[#280c2d]/30 backdrop-blur-sm p-8 rounded-[2.5rem] border border-[#fae78e]/10 hover:border-[#fae78e]/40 transition-all group cursor-pointer hover:-translate-y-2 relative overflow-hidden flex flex-col"
+                  className="bg-[#280c2d]/30 backdrop-blur-sm p-8 rounded-[2.5rem] border border-[#fae78e]/10 hover:border-[#fae78e]/40 transition-all group cursor-pointer hover:-translate-y-2 relative overflow-hidden flex flex-col text-left focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                     <div className="flex justify-between items-start mb-6">
                         <div className="p-3 bg-black rounded-xl border border-[#fae78e]/20 text-[#fae78e]">
@@ -289,7 +277,7 @@ const DevotionalsPage: React.FC = () => {
                            </div>
                         </div>
                     </div>
-                </div>
+                </button>
             ))}
         </div>
       </section>
@@ -298,19 +286,20 @@ const DevotionalsPage: React.FC = () => {
       {selectedDevotional && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/90 backdrop-blur-xl animate-in fade-in duration-500" onClick={() => setSelectedDevotional(null)}></div>
-            <div className="relative w-full max-w-2xl max-h-[90vh] bg-[#280c2d] rounded-[3rem] shadow-2xl overflow-y-auto border border-[#fae78e]/20 animate-in zoom-in-95 duration-500 custom-scrollbar">
+            <div className="relative w-full max-w-2xl max-h-[90vh] bg-[#280c2d] rounded-[3rem] shadow-2xl overflow-y-auto border border-[#fae78e]/20 animate-in zoom-in-95 duration-500 custom-scrollbar" role="dialog" aria-modal="true" aria-labelledby="modal-title">
                 
                 {/* Modal Header Image */}
                 <div className="relative h-64 overflow-hidden">
                     <img 
-                        src={selectedDevotional.image || 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'} 
-                        alt={selectedDevotional.title} 
+                        src={selectedDevotional.image || 'https://bezaleelforge.github.io/kachi/17.jpg'} 
+                        alt={`Artistic representation of ${selectedDevotional.title}`} 
                         className="w-full h-full object-cover grayscale opacity-50"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#280c2d] to-transparent"></div>
                     <button 
                         onClick={() => setSelectedDevotional(null)}
                         className="absolute top-6 right-6 p-3 bg-black/50 hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-full transition-all border border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                        aria-label="Close devotional details"
                     >
                         <X className="w-6 h-6" />
                     </button>
@@ -318,7 +307,7 @@ const DevotionalsPage: React.FC = () => {
                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fae78e] text-[#280c2d] text-[10px] font-black rounded-full uppercase tracking-widest mb-3">
                             {selectedDevotional.category}
                          </div>
-                         <h2 className="text-3xl md:text-4xl font-display font-bold text-white leading-tight">{selectedDevotional.title}</h2>
+                         <h2 id="modal-title" className="text-3xl md:text-4xl font-display font-bold text-white leading-tight">{selectedDevotional.title}</h2>
                     </div>
                 </div>
 
@@ -353,25 +342,28 @@ const DevotionalsPage: React.FC = () => {
                             <div className="flex gap-3">
                                 <button 
                                     onClick={() => handleShare('facebook', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/20 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all"
+                                    className="w-12 h-12 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/20 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                                    aria-label="Share on Facebook"
                                 >
                                     <Facebook className="w-5 h-5" />
                                 </button>
                                 <button 
                                     onClick={() => handleShare('twitter', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-all"
+                                    className="w-12 h-12 rounded-full bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                                    aria-label="Share on Twitter"
                                 >
                                     <Twitter className="w-5 h-5" />
                                 </button>
                                 <button 
                                     onClick={() => handleShare('whatsapp', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all"
+                                    className="w-12 h-12 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                                    aria-label="Share on WhatsApp"
                                 >
                                     <MessageCircle className="w-5 h-5" />
                                 </button>
                                 <button 
                                     onClick={() => handleShare('copy', selectedDevotional)}
-                                    className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all ${copySuccess ? 'text-green-500' : 'text-slate-400 hover:text-white'}`}
+                                    className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${copySuccess ? 'text-green-500' : 'text-slate-400 hover:text-white'}`}
                                     title="Copy Link"
                                 >
                                     {copySuccess ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
@@ -380,7 +372,7 @@ const DevotionalsPage: React.FC = () => {
                          </div>
                          <button 
                             onClick={() => setSelectedDevotional(null)}
-                            className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95 shadow-[0_0_15px_rgba(250,231,142,0.3)]"
+                            className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95 shadow-[0_0_15px_rgba(250,231,142,0.3)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                          >
                             Finish Reading
                          </button>
@@ -394,7 +386,7 @@ const DevotionalsPage: React.FC = () => {
       {showScrollTop && (
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-24 right-8 z-50 p-4 bg-[#280c2d] text-[#fae78e] rounded-full shadow-2xl border border-[#fae78e]/30 hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:scale-110 animate-in fade-in slide-in-from-bottom-4"
+          className="fixed bottom-24 right-8 z-50 p-4 bg-[#280c2d] text-[#fae78e] rounded-full shadow-2xl border border-[#fae78e]/30 hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:scale-110 animate-in fade-in slide-in-from-bottom-4 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           aria-label="Scroll to top"
         >
           <ChevronUp className="w-6 h-6" />
@@ -405,13 +397,19 @@ const DevotionalsPage: React.FC = () => {
       <section className="px-6 mt-24">
         <div className="max-w-4xl mx-auto p-12 bg-gradient-to-br from-[#280c2d] to-black rounded-[3rem] border border-[#fae78e]/20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(250,231,142,0.05),transparent_70%)]"></div>
-            <Star className="w-10 h-10 text-[#fae78e] mx-auto mb-6 animate-pulse" />
+            <Star className="w-10 h-10 text-[#fae78e] mx-auto mb-6 animate-pulse" aria-hidden="true" />
             <h3 className="text-3xl font-display font-bold mb-4">Never Miss a Word</h3>
             <p className="text-slate-400 mb-8 max-w-lg mx-auto">Get daily spiritual insights delivered directly to your inbox every morning at 6 AM.</p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative z-10">
-                <input type="email" placeholder="Your email address" className="flex-grow px-6 py-4 rounded-xl bg-black border border-[#fae78e]/20 text-white focus:outline-none focus:border-[#fae78e]" />
-                <button className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl hover:bg-white transition-colors">Subscribe</button>
-            </div>
+            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative z-10">
+                <input 
+                  type="email" 
+                  placeholder="Your email address" 
+                  required
+                  className="flex-grow px-6 py-4 rounded-xl bg-black border border-[#fae78e]/20 text-white focus:outline-none focus:border-[#fae78e] focus:ring-2 focus:ring-[#fae78e]" 
+                  aria-label="Your email address"
+                />
+                <button type="submit" className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl hover:bg-white transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">Subscribe</button>
+            </form>
         </div>
       </section>
     </div>
