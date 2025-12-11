@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -36,6 +35,32 @@ const App: React.FC = () => {
     }
   }, []);
 
+  // SEO Dynamics
+  useEffect(() => {
+    const pageTitles: Record<Page, string> = {
+      home: 'Kachi Emmanuel Ministries | Ministering Through Creativity',
+      about: 'Our Story | Kachi Emmanuel Ministries',
+      ministries: 'Our Ministries | Kachi Emmanuel Ministries',
+      partner: 'Support the Mission | Kachi Emmanuel Ministries',
+      devotionals: 'Daily Devotionals | Kachi Emmanuel Ministries',
+    };
+
+    const pageDescriptions: Record<Page, string> = {
+      home: 'Spreading the Gospel through innovative media, powerful teachings, and transformative outreach programs.',
+      about: 'Learn about Kachi Emmanuel and the vision behind the ministry that is transforming lives worldwide.',
+      ministries: 'Explore our various ministry arms including Believers Perspective, Spirit and Stature, and more.',
+      partner: 'Join our mission. Partner with Kachi Emmanuel Ministries to reach souls and impact communities.',
+      devotionals: 'Start your day with spiritual nourishment. Read our latest faith-filled daily devotionals.',
+    };
+
+    document.title = pageTitles[currentPage];
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', pageDescriptions[currentPage]);
+    }
+  }, [currentPage]);
+
   const handleCloseDevotional = () => {
     setShowDevotionalModal(false);
     sessionStorage.setItem('hasSeenDevotionalModal', 'true');
@@ -57,7 +82,6 @@ const App: React.FC = () => {
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       } else if (!isReturningToDevotionals) {
-        // Only scroll to top if we aren't relying on a page's internal scroll restoration
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 100);
