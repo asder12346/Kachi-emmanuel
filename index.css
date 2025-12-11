@@ -53,6 +53,49 @@
   }
 }
 
+/* X-NAV Hamburger Styles */
+.x-nav-burger {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 100;
+}
+
+.x-nav-burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #fae78e;
+  border-radius: 9px;
+  opacity: 1;
+  transition: .25s ease-in-out;
+}
+
+.x-nav-burger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.x-nav-burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.x-nav-burger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Menu Slide Transition */
+.x-nav-mobile-menu {
+  transition: transform 0.4s var(--ease-expo), opacity 0.3s ease;
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

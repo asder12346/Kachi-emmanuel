@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
@@ -15,8 +14,7 @@ import {
   MessageCircle, 
   Share2,
   Copy,
-  Check,
-  ChevronUp
+  Check
 } from 'lucide-react';
 
 interface Devotional {
@@ -34,7 +32,6 @@ const DevotionalsPage: React.FC = () => {
   const [selectedDevotional, setSelectedDevotional] = useState<Devotional | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [copySuccess, setCopySuccess] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const devotionals: Devotional[] = [
     {
@@ -108,11 +105,6 @@ const DevotionalsPage: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       sessionStorage.setItem('devotionals_scroll_y', window.scrollY.toString());
-      if (window.scrollY > 1000) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -142,7 +134,6 @@ const DevotionalsPage: React.FC = () => {
 
   return (
     <div className="bg-black min-h-screen text-white pb-20 selection:bg-[#fae78e] selection:text-[#280c2d]">
-      {/* Header */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
@@ -164,7 +155,6 @@ const DevotionalsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Devotional */}
       <section className="px-6 -mt-16 mb-24 relative z-20">
         <div className="max-w-5xl mx-auto bg-[#280c2d] rounded-[3rem] p-8 md:p-16 border border-[#fae78e]/20 shadow-2xl flex flex-col md:flex-row gap-12 items-center group">
             <div className="w-full md:w-1/2 aspect-square rounded-[2rem] overflow-hidden shadow-2xl relative">
@@ -208,19 +198,11 @@ const DevotionalsPage: React.FC = () => {
                   >
                       Read Full Word <ArrowRight className="w-5 h-5" />
                   </button>
-                  <button 
-                    onClick={() => handleShare('whatsapp', {title: 'The Peace that Surpasses Understanding'} as Devotional)}
-                    className="w-12 h-12 rounded-xl bg-white/5 hover:bg-[#25D366] text-white hover:text-white transition-all flex items-center justify-center border border-white/10 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    title="Share via WhatsApp"
-                  >
-                    <Share2 className="w-5 h-5" />
-                  </button>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* Search & Filter */}
       <section className="px-6 mb-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="relative w-full md:w-96">
@@ -233,17 +215,9 @@ const DevotionalsPage: React.FC = () => {
                     className="w-full pl-12 pr-6 py-4 rounded-2xl bg-[#280c2d]/50 border border-[#fae78e]/10 text-white focus:outline-none focus:border-[#fae78e] focus:ring-2 focus:ring-[#fae78e] transition-colors"
                 />
             </div>
-            <div className="flex gap-4 overflow-x-auto pb-2 w-full md:w-auto">
-                {['All', 'Spiritual Growth', 'Prayer', 'Purpose', 'Faith'].map(cat => (
-                    <button key={cat} className="whitespace-nowrap px-6 py-2 rounded-full border border-[#fae78e]/20 text-xs font-bold uppercase tracking-widest hover:bg-[#fae78e] hover:text-[#280c2d] transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-                        {cat}
-                    </button>
-                ))}
-            </div>
         </div>
       </section>
 
-      {/* Devotionals List */}
       <section className="px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredDevotionals.map((devo, i) => (
@@ -282,24 +256,21 @@ const DevotionalsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Devotional Detail Modal */}
       {selectedDevotional && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/90 backdrop-blur-xl animate-in fade-in duration-500" onClick={() => setSelectedDevotional(null)}></div>
             <div className="relative w-full max-w-2xl max-h-[90vh] bg-[#280c2d] rounded-[3rem] shadow-2xl overflow-y-auto border border-[#fae78e]/20 animate-in zoom-in-95 duration-500 custom-scrollbar" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-                
-                {/* Modal Header Image */}
                 <div className="relative h-64 overflow-hidden">
                     <img 
                         src={selectedDevotional.image || 'https://bezaleelforge.github.io/kachi/17.jpg'} 
-                        alt={`Artistic representation of ${selectedDevotional.title}`} 
+                        alt={selectedDevotional.title} 
                         className="w-full h-full object-cover grayscale opacity-50"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#280c2d] to-transparent"></div>
                     <button 
                         onClick={() => setSelectedDevotional(null)}
                         className="absolute top-6 right-6 p-3 bg-black/50 hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-full transition-all border border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                        aria-label="Close devotional details"
+                        aria-label="Close"
                     >
                         <X className="w-6 h-6" />
                     </button>
@@ -317,10 +288,6 @@ const DevotionalsPage: React.FC = () => {
                             <Calendar className="w-4 h-4 text-[#fae78e]" />
                             {selectedDevotional.date}
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-[#fae78e]" />
-                            {selectedDevotional.readTime} Read
-                        </div>
                     </div>
 
                     <div className="mb-10 p-8 bg-black/30 rounded-2xl border-l-4 border-[#fae78e]">
@@ -335,65 +302,25 @@ const DevotionalsPage: React.FC = () => {
                         ))}
                     </div>
 
-                    {/* Modal Actions */}
                     <div className="mt-16 pt-10 border-t border-[#fae78e]/10 flex flex-col md:flex-row justify-between items-center gap-8">
                          <div className="text-center md:text-left">
                             <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-3">Share this word</p>
                             <div className="flex gap-3">
-                                <button 
-                                    onClick={() => handleShare('facebook', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/20 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                                    aria-label="Share on Facebook"
-                                >
-                                    <Facebook className="w-5 h-5" />
-                                </button>
-                                <button 
-                                    onClick={() => handleShare('twitter', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                                    aria-label="Share on Twitter"
-                                >
-                                    <Twitter className="w-5 h-5" />
-                                </button>
-                                <button 
-                                    onClick={() => handleShare('whatsapp', selectedDevotional)}
-                                    className="w-12 h-12 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                                    aria-label="Share on WhatsApp"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                </button>
-                                <button 
-                                    onClick={() => handleShare('copy', selectedDevotional)}
-                                    className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${copySuccess ? 'text-green-500' : 'text-slate-400 hover:text-white'}`}
-                                    title="Copy Link"
-                                >
+                                <button onClick={() => handleShare('facebook', selectedDevotional)} className="w-12 h-12 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/20 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all"><Facebook className="w-5 h-5" /></button>
+                                <button onClick={() => handleShare('twitter', selectedDevotional)} className="w-12 h-12 rounded-full bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-all"><Twitter className="w-5 h-5" /></button>
+                                <button onClick={() => handleShare('whatsapp', selectedDevotional)} className="w-12 h-12 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all"><MessageCircle className="w-5 h-5" /></button>
+                                <button onClick={() => handleShare('copy', selectedDevotional)} className={`w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all ${copySuccess ? 'text-green-500' : 'text-slate-400 hover:text-white'}`}>
                                     {copySuccess ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                                 </button>
                             </div>
                          </div>
-                         <button 
-                            onClick={() => setSelectedDevotional(null)}
-                            className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95 shadow-[0_0_15px_rgba(250,231,142,0.3)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                         >
-                            Finish Reading
-                         </button>
+                         <button onClick={() => setSelectedDevotional(null)} className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95 shadow-[0_0_15px_rgba(250,231,142,0.3)]">Finish Reading</button>
                     </div>
                 </div>
             </div>
         </div>
       )}
 
-      {/* Floating Back to Top Button */}
-      {showScrollTop && (
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-24 right-8 z-50 p-4 bg-[#280c2d] text-[#fae78e] rounded-full shadow-2xl border border-[#fae78e]/30 hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:scale-110 animate-in fade-in slide-in-from-bottom-4 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          aria-label="Scroll to top"
-        >
-          <ChevronUp className="w-6 h-6" />
-        </button>
-      )}
-
-      {/* Newsletter / CTA */}
       <section className="px-6 mt-24">
         <div className="max-w-4xl mx-auto p-12 bg-gradient-to-br from-[#280c2d] to-black rounded-[3rem] border border-[#fae78e]/20 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(250,231,142,0.05),transparent_70%)]"></div>
@@ -401,14 +328,8 @@ const DevotionalsPage: React.FC = () => {
             <h3 className="text-3xl font-display font-bold mb-4">Never Miss a Word</h3>
             <p className="text-slate-400 mb-8 max-w-lg mx-auto">Get daily spiritual insights delivered directly to your inbox every morning at 6 AM.</p>
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative z-10">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  required
-                  className="flex-grow px-6 py-4 rounded-xl bg-black border border-[#fae78e]/20 text-white focus:outline-none focus:border-[#fae78e] focus:ring-2 focus:ring-[#fae78e]" 
-                  aria-label="Your email address"
-                />
-                <button type="submit" className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl hover:bg-white transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">Subscribe</button>
+                <input type="email" placeholder="Your email address" required className="flex-grow px-6 py-4 rounded-xl bg-black border border-[#fae78e]/20 text-white focus:outline-none focus:border-[#fae78e] focus:ring-2 focus:ring-[#fae78e]" aria-label="Your email address" />
+                <button type="submit" className="px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl hover:bg-white transition-colors">Subscribe</button>
             </form>
         </div>
       </section>
