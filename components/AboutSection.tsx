@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Target, Compass, Shield, Flame, Heart, Users, Play, Globe, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { Page } from '../App';
@@ -155,7 +156,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
           <div className="flex justify-center">
              <div className="w-full max-w-sm rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#fae78e]/30 bg-[#280c2d] relative group">
                 <img 
-                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                  src="https://bezaleelforge.github.io/kachi/17.jpg" 
                   alt="Kachi Emmanuel" 
                   className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100"
                 />
