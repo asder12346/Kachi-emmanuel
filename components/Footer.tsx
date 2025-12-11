@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpenText, Facebook, Instagram, Twitter, Youtube, Mail, MapPin, Phone, Heart, ArrowRight, Sparkles, ChevronUp } from 'lucide-react';
+import { BookOpenText, Facebook, Instagram, Twitter, Youtube, Mail, MapPin, Phone, Heart, ArrowRight, Sparkles, ChevronUp, Music } from 'lucide-react';
 import { Page } from '../App';
 
 interface FooterProps {
@@ -22,10 +22,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, label: 'Facebook', href: '#' },
-    { icon: Instagram, label: 'Instagram', href: '#' },
-    { icon: Twitter, label: 'Twitter', href: '#' },
-    { icon: Youtube, label: 'YouTube', href: '#' },
+    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1FgQffzLr6/?mibextid=wwXIfr' },
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/thebelieversperspective_?igsh=MTV0czVrMmRtZmpnNQ%3D%3D&utm_source=qr' },
+    { icon: Youtube, label: 'YouTube', href: 'https://youtube.com/@kachiemmanuelministries?si=6v0vK6vX9GMjh8D7' },
+    { icon: Music, label: 'TikTok', href: 'https://www.tiktok.com/@thebelieversperspective?_t=ZS-90d0KigCOSW&_r=1' },
   ];
 
   return (
@@ -64,6 +64,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <a 
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-10 h-10 flex items-center justify-center rounded-xl bg-[#280c2d] border border-[#fae78e]/20 text-[#fae78e] hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black`}
                   aria-label={social.label}
                 >

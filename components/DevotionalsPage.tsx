@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   BookOpen, 
@@ -157,7 +156,14 @@ const DevotionalsPage: React.FC = () => {
     <div className="bg-black min-h-screen text-white pb-20 selection:bg-[#fae78e] selection:text-[#280c2d]">
       {/* Header */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d] to-black"></div>
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://bezaleelforge.github.io/kachi/14.jpg" 
+            alt="Devotionals Background" 
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d]/80 to-black"></div>
+        </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fae78e]/10 border border-[#fae78e]/30 mb-8 backdrop-blur-sm">
                 <Sparkles className="w-4 h-4 text-[#fae78e]" />
@@ -304,7 +310,7 @@ const DevotionalsPage: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#280c2d] to-transparent"></div>
                     <button 
                         onClick={() => setSelectedDevotional(null)}
-                        className="absolute top-6 right-6 p-3 bg-black/50 hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-full transition-all border border-white/10"
+                        className="absolute top-6 right-6 p-3 bg-black/50 hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-full transition-all border border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     >
                         <X className="w-6 h-6" />
                     </button>

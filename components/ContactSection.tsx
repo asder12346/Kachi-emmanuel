@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube, Sparkles } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube, Sparkles, Music } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -143,14 +143,17 @@ const ContactSection: React.FC = () => {
               </h4>
               <div className="flex gap-4">
                 {[
-                  { Icon: Facebook, label: 'Facebook' },
-                  { Icon: Instagram, label: 'Instagram' },
-                  { Icon: Twitter, label: 'Twitter' },
-                  { Icon: Youtube, label: 'YouTube' }
-                ].map(({ Icon, label }) => (
+                  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1FgQffzLr6/?mibextid=wwXIfr' },
+                  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/thebelieversperspective_?igsh=MTV0czVrMmRtZmpnNQ%3D%3D&utm_source=qr' },
+                  { Icon: Twitter, label: 'Twitter', href: '#' },
+                  { Icon: Youtube, label: 'YouTube', href: 'https://youtube.com/@kachiemmanuelministries?si=6v0vK6vX9GMjh8D7' },
+                  { Icon: Music, label: 'TikTok', href: 'https://www.tiktok.com/@thebelieversperspective?_t=ZS-90d0KigCOSW&_r=1' }
+                ].map(({ Icon, label, href }) => (
                   <a 
                     key={label}
-                    href="#" 
+                    href={href} 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-[#280c2d] hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-xl flex items-center justify-center transition-all group border border-[#fae78e]/20 hover:border-[#fae78e] hover:scale-110 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black" 
                     aria-label={label}
                   >

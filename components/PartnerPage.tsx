@@ -45,7 +45,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
              <img 
-                src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                src="https://bezaleelforge.github.io/kachi/14.jpg" 
                 alt="Partner Background" 
                 className="w-full h-full object-cover opacity-50"
              />
@@ -180,7 +180,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
               </div>
               <button 
                 onClick={() => handleCustomAmountSubmit('monthly')}
-                className="w-full py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-white hover:scale-[1.02] shadow-[0_0_15px_rgba(250,231,142,0.4)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                className="w-full py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-white hover:scale-[1.02] shadow-[0_0_15px_rgba(250,231,142,0.4)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Become Monthly Partner
               </button>

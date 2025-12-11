@@ -121,7 +121,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
       <section className="pt-32 pb-24 relative overflow-hidden flex items-center min-h-[50vh]">
         <div className="absolute inset-0 z-0">
              <img 
-                src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                src="https://bezaleelforge.github.io/kachi/14.jpg" 
                 alt="About Hero" 
                 className="w-full h-full object-cover opacity-30 dark:opacity-20"
              />

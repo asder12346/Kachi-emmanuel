@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
@@ -152,7 +151,7 @@ const MinistriesPage: React.FC = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
              <img 
-                src="https://images.unsplash.com/photo-1511649475669-e288648b2339?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                src="https://bezaleelforge.github.io/kachi/14.jpg" 
                 alt="Ministry Background" 
                 className="w-full h-full object-cover opacity-40"
              />
@@ -283,7 +282,7 @@ const MinistriesPage: React.FC = () => {
                           </button>
                           <button 
                             onClick={() => handleShare('whatsapp', ministryDetails[activeTab].title)}
-                            className="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-sm"
+                            className="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-sm"
                             title="Share on WhatsApp"
                           >
                             <MessageCircle className="w-4 h-4" />
