@@ -35,42 +35,42 @@ const TestimonialsSection: React.FC = () => {
 
   return (
     <section id="testimonials" className="py-12 bg-slate-50 dark:bg-black transition-colors duration-300 animate-in fade-in relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
-        <div className="text-center mb-10">
+      <div className="max-w-3xl mx-auto px-4 relative z-10">
+        <div className="text-center mb-8">
           <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#fae78e] mb-2">Testimonials</h2>
           <h3 className="font-display text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Impact Stories</h3>
         </div>
 
         <div className="relative group">
-            {/* Improved Compact Card */}
-            <div className="relative overflow-hidden rounded-[2.5rem] shadow-xl bg-white dark:bg-[#280c2d] border border-slate-200 dark:border-[#fae78e]/10 p-8 md:p-12 animate-in zoom-in duration-500 min-h-[320px] flex items-center justify-center">
-                <Quote className="absolute top-6 left-6 w-10 h-10 text-[#fae78e]/5" />
+            {/* Reduced Compact Card Size */}
+            <div className="relative overflow-hidden rounded-[2rem] shadow-xl bg-white dark:bg-[#280c2d] border border-slate-200 dark:border-[#fae78e]/10 p-6 md:p-10 animate-in zoom-in duration-500 min-h-[280px] flex items-center justify-center">
+                <Quote className="absolute top-4 left-4 w-8 h-8 text-[#fae78e]/5" />
                 
                 <div className="w-full">
                     {testimonials.map((testimonial, index) => (
                         <div
                           key={index}
-                          className={`transition-all duration-500 ease-in-out absolute inset-0 flex flex-col items-center justify-center p-8 ${
+                          className={`transition-all duration-500 ease-in-out absolute inset-0 flex flex-col items-center justify-center p-6 ${
                               index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
                           }`}
                         >
-                            <div className="flex gap-1 text-[#fae78e] mb-4">
-                                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                            <div className="flex gap-1 text-[#fae78e] mb-3">
+                                {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
                             </div>
 
-                            <p className="text-base md:text-lg text-slate-600 dark:text-slate-200 text-center font-serif-display leading-relaxed mb-8 italic font-light">
+                            <p className="text-sm md:text-base text-slate-600 dark:text-slate-200 text-center font-serif-display leading-relaxed mb-6 italic font-light">
                                 "{testimonial.quote}"
                             </p>
                             
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3">
                                 <img
                                     src={testimonial.image}
                                     alt={testimonial.name}
-                                    className="w-12 h-12 rounded-full object-cover border-2 border-[#fae78e] shadow-md"
+                                    className="w-10 h-10 rounded-full object-cover border-2 border-[#fae78e] shadow-md"
                                 />
                                 <div className="text-left">
-                                    <p className="font-bold text-sm text-slate-900 dark:text-white">{testimonial.name}</p>
-                                    <p className="text-[10px] text-[#fae78e] font-bold uppercase tracking-wider">{testimonial.title}</p>
+                                    <p className="font-bold text-xs text-slate-900 dark:text-white">{testimonial.name}</p>
+                                    <p className="text-[9px] text-[#fae78e] font-bold uppercase tracking-wider">{testimonial.title}</p>
                                 </div>
                             </div>
                         </div>
@@ -78,20 +78,20 @@ const TestimonialsSection: React.FC = () => {
                 </div>
 
                 {/* Compact Navigation */}
-                <div className="absolute bottom-6 right-8 flex gap-3">
+                <div className="absolute bottom-4 right-6 flex gap-2">
                   <button
                     onClick={goToPrevious}
-                    className="p-2.5 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
+                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
                     aria-label="Previous"
                   >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={goToNext}
-                    className="p-2.5 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
+                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
                     aria-label="Next"
                   >
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
             </div>

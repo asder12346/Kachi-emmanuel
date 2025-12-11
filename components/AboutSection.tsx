@@ -1,11 +1,13 @@
 import React from 'react';
-import { Target, Compass, Shield, Flame, Heart, Users, Play, Globe, CheckCircle2, Sparkles } from 'lucide-react';
+import { Target, Compass, Shield, Flame, Heart, Users, Play, Globe, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
+import { Page } from '../App';
 
 interface AboutSectionProps {
   isSimple?: boolean;
+  onNavigate?: (page: Page, sectionId?: string) => void;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigate }) => {
   const coreBeliefs = [
     { title: 'Biblical Authority', desc: 'We believe the Bible is the inspired, infallible Word of God and the final authority for faith and practice.', icon: Shield },
     { title: 'Salvation Through Christ', desc: 'We believe in salvation by grace through faith in Jesus Christ alone, who died for our sins and rose again.', icon: Heart },
@@ -25,30 +27,30 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false }) => {
   if (isSimple) {
     return (
       <section id="about" className="py-24 bg-white dark:bg-[#050505] border-t border-[#fae78e]/10 transition-colors">
-        <div className="max-w-5xl mx-auto px-4 text-center">
+        <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="w-16 h-1 bg-[#fae78e] mx-auto mb-8 rounded-full shadow-[0_0_10px_#fae78e]"></div>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">Kachi Emmanuel Ministries</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left mt-16">
-            <div className="p-8 bg-[#280c2d] rounded-3xl border border-[#fae78e]/10 shadow-xl group hover:border-[#fae78e]/40 transition-all">
-              <div className="w-12 h-12 bg-[#fae78e] rounded-xl flex items-center justify-center mb-6">
-                <Target className="w-6 h-6 text-[#280c2d]" />
-              </div>
-              <h3 className="text-[#fae78e] font-bold text-xl mb-4 uppercase tracking-widest">Vision</h3>
-              <p className="text-slate-200 text-sm leading-relaxed font-light">
-                To raise a generation rooted in Christ, empowered by the Holy Spirit, living out the Gospel with creativity, compassion, and excellence.
-              </p>
-            </div>
-            <div className="p-8 bg-slate-100 dark:bg-[#1a1a1a] rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl group hover:border-[#fae78e]/40 transition-all">
-              <div className="w-12 h-12 bg-[#280c2d] rounded-xl flex items-center justify-center mb-6">
-                <Compass className="w-6 h-6 text-[#fae78e]" />
-              </div>
-              <h3 className="text-slate-900 dark:text-white font-bold text-xl mb-4 uppercase tracking-widest">Mission</h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light">
-                To spread the Gospel through innovative media, practical teaching, and compassionate outreach, equipping believers to fulfill the Great Commission.
-              </p>
-            </div>
+          <h4 className="text-[#fae78e] font-bold text-sm uppercase tracking-[0.3em] mb-4">About Kachi Emmanuel Ministries</h4>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+            Transforming Lives Through Faith
+          </h2>
+          
+          <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-12">
+            <p>
+              Kachi Emmanuel Ministries is dedicated to spreading the Gospel through creative expressions and innovative approaches. Founded on the principles of faith, hope, and love, our mission is to reach souls across generations with the transformative message of Jesus Christ.
+            </p>
+            <p>
+              Through multimedia productions, inspirational teachings, and community outreach, we strive to make a lasting impact in our world for the Kingdom of God.
+            </p>
           </div>
+
+          <button 
+            onClick={() => onNavigate?.('about')}
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#280c2d] dark:bg-[#fae78e] text-[#fae78e] dark:text-[#280c2d] font-bold rounded-xl shadow-lg hover:scale-105 transition-all group"
+          >
+            Learn More
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </section>
     );
@@ -149,7 +151,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false }) => {
 
 // Simple helper icon
 const HandHeart = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3.5L12 8c.6-1 1-2.1 1-3.2A2.8 2.8 0 0 0 10.2 2c-.6 0-1.2.3-1.6.8L5 8H2v10a2 2 0 0 0 2 2h12.5a2.5 2.5 0 0 0 2.4-3.2L18 14H11Z"/><path d="M11 14v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2v-4"/><path d="M7 15h0"/></svg>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3.5L12 8c.6-1 1-2.1 1-3.2A2.8 2.8 0 0 0 10.2 2c-.6 0-1.2.3-1.6.8L5 8H2v10a2 2 0 0 0 2 2h12.5a2.5 2.5 0 0 0 2.4-3.2L18 14H11Z"/><path d="M11 14v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2 2v-4"/><path d="M7 15h0"/></svg>
 );
 
 export default AboutSection;

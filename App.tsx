@@ -67,7 +67,7 @@ const App: React.FC = () => {
         return (
           <>
             <HeroSection onNavigate={handleNavigate} />
-            <AboutSection isSimple={true} />
+            <AboutSection isSimple={true} onNavigate={handleNavigate} />
             <VideoSection />
             <MinistriesSection onNavigate={handleNavigate} />
             <GallerySection />
