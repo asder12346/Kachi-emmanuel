@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { Mail, Send } from 'lucide-react';
+import { Mail, Send, CheckCircle } from 'lucide-react';
 
 const ConnectSection: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Subscribing email:', email);
-    alert('Thank you for subscribing!');
-    setEmail('');
+    // Simulate API call success
+    setTimeout(() => {
+      setShowSuccessMessage(true);
+      setEmail('');
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000); // Hide success message after 5 seconds
+    }, 500);
   };
 
   return (
@@ -59,6 +66,17 @@ const ConnectSection: React.FC = () => {
             <Send className="w-5 h-5 ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </button>
         </form>
+
+        {showSuccessMessage && (
+          <div 
+            className="mt-8 p-6 bg-green-600/90 text-white rounded-2xl shadow-xl flex items-center justify-center gap-4 max-w-md mx-auto animate-in fade-in slide-in-from-top-4 duration-500"
+            role="alert"
+            aria-live="assertive"
+          >
+            <CheckCircle className="w-7 h-7 animate-pulse" />
+            <span className="font-bold text-lg">Thank you for subscribing!</span>
+          </div>
+        )}
         
         <div className="mt-12 flex items-center justify-center gap-8 opacity-60">
            <div className="text-center">
