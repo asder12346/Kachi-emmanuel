@@ -351,23 +351,9 @@ const MinistriesPage: React.FC = () => {
                       >
                         <circle cx={country.x} cy={country.y} r="6" className={`fill-[#fae78e] transition-all duration-300 ${hoveredCountry === country.id ? 'scale-150 fill-white' : ''}`} />
                         <circle cx={country.x} cy={country.y} r="15" className={`fill-[#fae78e]/20 animate-ping pointer-events-none ${hoveredCountry === country.id ? 'opacity-100' : 'opacity-0'}`} />
-                        {hoveredCountry === country.id && (
-                          <foreignObject x={country.x + 15} y={country.y - 60} width="220" height="120" className="overflow-visible z-50 pointer-events-none">
-                            <div className="bg-[#000] p-4 rounded-2xl shadow-2xl border border-[#fae78e] animate-in fade-in zoom-in-95">
-                               <div className="flex items-center gap-2 mb-2">
-                                  <span className="text-xl">{country.flag}</span>
-                                  <h6 className="font-bold text-white text-sm">{country.name}</h6>
-                               </div>
-                               <p className="text-[11px] text-[#fae78e] leading-tight">{country.work}</p>
-                            </div>
-                          </foreignObject>
-                        )}
                       </g>
                     ))}
                 </WorldMapSVG>
-                <div className="absolute bottom-8 right-8 bg-[#fae78e] text-[#280c2d] text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest hidden md:flex items-center gap-2 shadow-[0_0_15px_rgba(250,231,142,0.5)]">
-                    <MapIcon className="w-3 h-3" /> Hover markers for details
-                </div>
             </div>
         </div>
       </section>

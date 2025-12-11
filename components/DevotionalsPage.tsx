@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   BookOpen, 
   Calendar, 
@@ -15,7 +15,8 @@ import {
   MessageCircle, 
   Share2,
   Copy,
-  Check
+  Check,
+  ChevronUp
 } from 'lucide-react';
 
 interface Devotional {
@@ -33,6 +34,7 @@ const DevotionalsPage: React.FC = () => {
   const [selectedDevotional, setSelectedDevotional] = useState<Devotional | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [copySuccess, setCopySuccess] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const devotionals: Devotional[] = [
     {
@@ -92,6 +94,35 @@ const DevotionalsPage: React.FC = () => {
       image: 'https://images.unsplash.com/photo-1511632765486-a01980968a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
     }
   ];
+
+  // SCROLL RESTORATION LOGIC
+  useEffect(() => {
+    const savedPos = sessionStorage.getItem('devotionals_scroll_y');
+    if (savedPos) {
+      // Use a small timeout to ensure layout is complete and App.tsx's scroll-to-top has triggered
+      const timer = setTimeout(() => {
+        window.scrollTo({ top: parseInt(savedPos, 10), behavior: 'instant' as any });
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Save current position
+      sessionStorage.setItem('devotionals_scroll_y', window.scrollY.toString());
+      
+      // Update floating button visibility
+      if (window.scrollY > 1000) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleShare = (platform: string, devotional: Devotional) => {
     const url = window.location.href;
@@ -160,7 +191,7 @@ const DevotionalsPage: React.FC = () => {
                 </div>
                 <h2 className="text-3xl font-display font-bold mb-4 text-white">The Peace that Surpasses Understanding</h2>
                 <p className="text-[#fae78e] font-serif-display italic mb-6">Scripture: Philippians 4:7</p>
-                <p className="text-slate-300 leading-relaxed mb-8 font-light">
+                <p className="text-slate-200 leading-[1.8] mb-8 text-lg font-light">
                     In the middle of the storm, Jesus didn't just calm the waves; He was at peace while the waves were still raging. Peace isn't the absence of trouble...
                 </p>
                 <div className="flex items-center gap-4">
@@ -225,7 +256,7 @@ const DevotionalsPage: React.FC = () => {
                 <div 
                   key={i} 
                   onClick={() => setSelectedDevotional(devo)}
-                  className="bg-[#280c2d]/30 backdrop-blur-sm p-8 rounded-[2.5rem] border border-[#fae78e]/10 hover:border-[#fae78e]/40 transition-all group cursor-pointer hover:-translate-y-2 relative overflow-hidden"
+                  className="bg-[#280c2d]/30 backdrop-blur-sm p-8 rounded-[2.5rem] border border-[#fae78e]/10 hover:border-[#fae78e]/40 transition-all group cursor-pointer hover:-translate-y-2 relative overflow-hidden flex flex-col"
                 >
                     <div className="flex justify-between items-start mb-6">
                         <div className="p-3 bg-black rounded-xl border border-[#fae78e]/20 text-[#fae78e]">
@@ -238,11 +269,11 @@ const DevotionalsPage: React.FC = () => {
                     <p className="text-[10px] font-bold text-[#fae78e] uppercase tracking-[0.2em] mb-2">{devo.date}</p>
                     <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#fae78e] transition-colors">{devo.title}</h3>
                     <p className="text-xs text-slate-400 italic mb-4">Focus: {devo.scripture}</p>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-8 line-clamp-2 font-light">
+                    <p className="text-slate-200 text-base leading-[1.7] mb-8 line-clamp-3 font-normal">
                         {devo.excerpt}
                     </p>
                     <div className="flex items-center justify-between mt-auto">
-                        <span className="text-[10px] px-3 py-1 bg-black rounded-full border border-[#fae78e]/10 text-slate-500 font-bold uppercase tracking-widest">
+                        <span className="text-[10px] px-3 py-1 bg-black rounded-full border border-[#fae78e]/10 text-slate-400 font-bold uppercase tracking-widest">
                             {devo.category}
                         </span>
                         <div className="flex items-center gap-2">
@@ -285,7 +316,7 @@ const DevotionalsPage: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="p-10">
+                <div className="p-10 md:p-12">
                     <div className="flex flex-wrap items-center gap-6 mb-8 text-slate-400 text-sm border-b border-[#fae78e]/10 pb-6">
                         <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4 text-[#fae78e]" />
@@ -297,20 +328,20 @@ const DevotionalsPage: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="mb-8 p-6 bg-black/30 rounded-2xl border-l-4 border-[#fae78e]">
-                        <p className="text-xl font-serif-display italic text-[#fae78e] leading-relaxed">
+                    <div className="mb-10 p-8 bg-black/30 rounded-2xl border-l-4 border-[#fae78e]">
+                        <p className="text-2xl font-serif-display italic text-[#fae78e] leading-relaxed">
                             "{selectedDevotional.scripture}"
                         </p>
                     </div>
 
-                    <div className="text-slate-300 leading-relaxed font-light text-lg space-y-6">
+                    <div className="text-slate-200 leading-[1.8] font-normal text-xl space-y-8">
                         {selectedDevotional.fullContent.split('\n\n').map((para, idx) => (
                             <p key={idx}>{para}</p>
                         ))}
                     </div>
 
                     {/* Modal Actions */}
-                    <div className="mt-12 pt-10 border-t border-[#fae78e]/10 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="mt-16 pt-10 border-t border-[#fae78e]/10 flex flex-col md:flex-row justify-between items-center gap-8">
                          <div className="text-center md:text-left">
                             <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-3">Share this word</p>
                             <div className="flex gap-3">
@@ -343,7 +374,7 @@ const DevotionalsPage: React.FC = () => {
                          </div>
                          <button 
                             onClick={() => setSelectedDevotional(null)}
-                            className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95"
+                            className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-2xl hover:bg-white transition-all active:scale-95 shadow-[0_0_15px_rgba(250,231,142,0.3)]"
                          >
                             Finish Reading
                          </button>
@@ -351,6 +382,17 @@ const DevotionalsPage: React.FC = () => {
                 </div>
             </div>
         </div>
+      )}
+
+      {/* Floating Back to Top Button */}
+      {showScrollTop && (
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-24 right-8 z-50 p-4 bg-[#280c2d] text-[#fae78e] rounded-full shadow-2xl border border-[#fae78e]/30 hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:scale-110 animate-in fade-in slide-in-from-bottom-4"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-6 h-6" />
+        </button>
       )}
 
       {/* Newsletter / CTA */}

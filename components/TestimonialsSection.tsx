@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { MessageSquare, ArrowLeft, ArrowRight, Quote, Star } from 'lucide-react';
 
@@ -42,7 +43,6 @@ const TestimonialsSection: React.FC = () => {
         </div>
 
         <div className="relative group">
-            {/* Reduced Compact Card Size */}
             <div className="relative overflow-hidden rounded-[2rem] shadow-xl bg-white dark:bg-[#280c2d] border border-slate-200 dark:border-[#fae78e]/10 p-6 md:p-10 animate-in zoom-in duration-500 min-h-[280px] flex items-center justify-center">
                 <Quote className="absolute top-4 left-4 w-8 h-8 text-[#fae78e]/5" />
                 
@@ -81,17 +81,17 @@ const TestimonialsSection: React.FC = () => {
                 <div className="absolute bottom-4 right-6 flex gap-2">
                   <button
                     onClick={goToPrevious}
-                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                    className="p-1.5 md:p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                     aria-label="Previous"
                   >
-                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <ArrowLeft className="w-3 h-3 md:w-3.5 md:h-3.5" />
                   </button>
                   <button
                     onClick={goToNext}
-                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                    className="p-1.5 md:p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                     aria-label="Next"
                   >
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5" />
                   </button>
                 </div>
             </div>

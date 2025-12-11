@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { BookOpen, Church, ArrowRight, HandHeart, Users } from 'lucide-react';
+import { BookOpen, Church, ArrowRight, HandHeart, Users, Sparkles, Star } from 'lucide-react';
 import { Page } from '../App';
 
 interface MinistriesSectionProps {
@@ -42,9 +43,25 @@ const MinistriesSection: React.FC<MinistriesSectionProps> = ({ onNavigate }) => 
     <section id="ministries" className="py-24 bg-black relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[#280c2d]/20 to-black pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-xs uppercase tracking-[0.4em] font-bold text-[#fae78e] mb-4">Ministries Overview</h2>
           <h3 className="font-display text-4xl md:text-5xl font-extrabold text-white">Transforming Lives Everywhere</h3>
+        </div>
+
+        {/* Lined Marquee */}
+        <div className="w-full overflow-hidden bg-[#280c2d] py-3 border-y border-[#fae78e]/30 mb-16 shadow-[0_0_30px_rgba(40,12,45,0.5)]">
+          <div className="flex whitespace-nowrap animate-marquee">
+            {[...Array(12)].map((_, i) => (
+              <div key={i} className="flex items-center gap-6 mx-4">
+                <span className="text-white font-bold uppercase tracking-[0.3em] text-sm flex items-center gap-3">
+                  <Star className="w-4 h-4 text-[#fae78e] fill-[#fae78e]" />
+                  Kachi Emmanuel Ministries
+                  <Sparkles className="w-4 h-4 text-[#fae78e]" />
+                </span>
+                <div className="h-1 w-8 bg-[#fae78e]/20 rounded-full"></div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

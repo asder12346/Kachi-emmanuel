@@ -42,8 +42,11 @@ const App: React.FC = () => {
   };
 
   const handleNavigate = (page: Page, sectionId?: string) => {
+    const isReturningToDevotionals = page === 'devotionals' && currentPage !== 'devotionals';
+    
     setCurrentPage(page);
     setShowDevotionalModal(false); // Close modal if navigating from it
+    
     setTimeout(() => {
       if (sectionId) {
         const element = document.getElementById(sectionId);
@@ -53,7 +56,8 @@ const App: React.FC = () => {
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
-      } else {
+      } else if (!isReturningToDevotionals) {
+        // Only scroll to top if we aren't relying on a page's internal scroll restoration
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 100);
