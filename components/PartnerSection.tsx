@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Handshake, Gift, DollarSign, Users, ArrowRight } from 'lucide-react';
 import { Page } from '../App';
@@ -51,13 +52,14 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ onNavigate }) => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        {/* Increased gap for desktop and added margin for mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 items-center">
           {partnershipOptions.map((option, index) => (
             <div
               key={index}
               className={`relative bg-[#280c2d]/90 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 flex flex-col items-center text-center border transition-all duration-500 animate-in fade-in slide-in-from-bottom-8 shadow-xl hover:shadow-[0_0_40px_rgba(250,231,142,0.2)] overflow-visible ${
                 option.highlight 
-                  ? 'border-[#fae78e] scale-[1.05] z-20 shadow-[0_0_50px_rgba(250,231,142,0.15)]' 
+                  ? 'border-[#fae78e] scale-[1.05] z-20 shadow-[0_0_50px_rgba(250,231,142,0.15)] my-6 md:my-0' 
                   : 'border-[#fae78e]/10 group hover:border-[#fae78e]/50 hover:-translate-y-2'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}

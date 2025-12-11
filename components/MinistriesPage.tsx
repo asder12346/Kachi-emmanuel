@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
@@ -19,7 +20,11 @@ import {
   ChevronRight,
   Map as MapIcon,
   Zap,
-  Play
+  Play,
+  Facebook,
+  Twitter,
+  Share2,
+  MessageCircle
 } from 'lucide-react';
 
 // Simplified World Map SVG Component
@@ -118,6 +123,25 @@ const MinistriesPage: React.FC = () => {
     { title: 'Prayer & Intercession', description: 'Building a foundation of prayer that impacts nations.', btn: 'Join Prayer', icon: Flame }
   ];
 
+  const handleShare = (platform: string, title: string) => {
+    const url = window.location.href;
+    const text = `Check out ${title} at Kachi Emmanuel Ministries!`;
+    let shareUrl = '';
+
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
+        break;
+    }
+    if (shareUrl) window.open(shareUrl, '_blank');
+  };
+
   if (!mounted) return null;
 
   return (
@@ -190,34 +214,40 @@ const MinistriesPage: React.FC = () => {
                 <div className="w-24 h-1 bg-[#fae78e] mx-auto mt-6 rounded-full shadow-[0_0_10px_#fae78e]"></div>
             </div>
 
-            {/* Tab Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12 p-1.5 bg-[#280c2d] rounded-2xl max-w-4xl mx-auto border border-[#fae78e]/20">
+            {/* Enhanced Tab Navigation */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16 p-2 bg-[#280c2d]/50 backdrop-blur-lg rounded-[2rem] max-w-4xl mx-auto border border-[#fae78e]/20 shadow-2xl relative">
               {ministryDetails.map((detail, idx) => (
                 <button
                   key={detail.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] ${
+                  className={`flex-1 min-w-[180px] flex items-center justify-center gap-3 px-8 py-5 rounded-2xl font-bold transition-all duration-300 relative overflow-hidden focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] ${
                     activeTab === idx 
-                      ? 'bg-[#fae78e] text-[#280c2d] shadow-[0_0_15px_rgba(250,231,142,0.4)]' 
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-[#fae78e] text-[#280c2d] shadow-[0_20px_40px_-10px_rgba(250,231,142,0.4)] scale-[1.05] z-10' 
+                      : 'text-slate-400 hover:text-white hover:bg-white/5 opacity-70 hover:opacity-100'
                   }`}
                   aria-controls={`tab-panel-${detail.id}`}
                   aria-selected={activeTab === idx}
                   role="tab"
                 >
                   <detail.icon className={`w-5 h-5 ${activeTab === idx ? 'text-[#280c2d]' : 'text-[#fae78e]'}`} />
-                  <span className="text-sm whitespace-nowrap">{detail.title}</span>
+                  <span className="text-sm md:text-base tracking-wide whitespace-nowrap">{detail.title}</span>
+                  {activeTab === idx && (
+                    <div className="absolute top-0 left-0 w-full h-1 bg-white/40"></div>
+                  )}
                 </button>
               ))}
             </div>
 
-            {/* Tab Panel Content */}
-            <div className="bg-[#1a1a1a] rounded-[2.5rem] shadow-2xl border border-[#fae78e]/10 overflow-hidden transition-all duration-500">
+            {/* Tab Panel Content with Slide-in Animation */}
+            <div 
+              key={activeTab} // Using key to trigger re-mounting for animate-in
+              className="bg-[#1a1a1a] rounded-[3rem] shadow-2xl border border-[#fae78e]/10 overflow-hidden animate-in fade-in slide-in-from-right-8 duration-700 ease-out"
+            >
                <div className="flex flex-col lg:flex-row">
                  {/* Overview Column */}
-                 <div className="lg:w-2/5 p-8 md:p-12 bg-[#280c2d] border-b lg:border-b-0 lg:border-r border-[#fae78e]/10 relative overflow-hidden">
+                 <div className="lg:w-2/5 p-8 md:p-12 bg-[#280c2d] border-b lg:border-b-0 lg:border-r border-[#fae78e]/10 relative overflow-hidden flex flex-col">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#fae78e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <div className="w-16 h-16 rounded-2xl bg-[#fae78e] flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(250,231,142,0.3)]">
+                    <div className="w-16 h-16 rounded-2xl bg-[#fae78e] flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(250,231,142,0.3)] animate-in zoom-in duration-500 delay-200">
                       {React.createElement(ministryDetails[activeTab].icon, { className: "w-8 h-8 text-[#280c2d]" })}
                     </div>
                     <h4 className="text-3xl font-display font-bold text-white mb-2">{ministryDetails[activeTab].title}</h4>
@@ -225,15 +255,47 @@ const MinistriesPage: React.FC = () => {
                     <p className="text-slate-300 leading-relaxed mb-10 text-lg italic font-light border-l-2 border-[#fae78e]/30 pl-4">
                       "{ministryDetails[activeTab].description}"
                     </p>
-                    <button className="flex items-center gap-2 px-8 py-3.5 bg-black text-white border border-[#fae78e]/30 font-bold rounded-xl hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-lg active:scale-95 group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-                      {ministryDetails[activeTab].cta}
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <div className="mt-auto flex flex-col gap-6">
+                      <button className="flex items-center gap-2 px-8 py-3.5 bg-black text-white border border-[#fae78e]/30 font-bold rounded-xl hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-lg active:scale-95 group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+                        {ministryDetails[activeTab].cta}
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+
+                      {/* Share Section */}
+                      <div className="pt-6 border-t border-[#fae78e]/10">
+                        <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3 flex items-center gap-2">
+                          <Share2 className="w-3 h-3" /> Share Ministry
+                        </p>
+                        <div className="flex gap-3">
+                          <button 
+                            onClick={() => handleShare('facebook', ministryDetails[activeTab].title)}
+                            className="w-10 h-10 rounded-full bg-[#1877F2]/10 border border-[#1877F2]/30 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all shadow-sm"
+                            title="Share on Facebook"
+                          >
+                            <Facebook className="w-4 h-4" />
+                          </button>
+                          <button 
+                            onClick={() => handleShare('twitter', ministryDetails[activeTab].title)}
+                            className="w-10 h-10 rounded-full bg-[#1DA1F2]/10 border border-[#1DA1F2]/30 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-all shadow-sm"
+                            title="Share on Twitter"
+                          >
+                            <Twitter className="w-4 h-4" />
+                          </button>
+                          <button 
+                            onClick={() => handleShare('whatsapp', ministryDetails[activeTab].title)}
+                            className="w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-sm"
+                            title="Share on WhatsApp"
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                  </div>
                  {/* Details Column */}
                  <div className="lg:w-3/5 p-8 md:p-12" role="tabpanel" id={`tab-panel-${ministryDetails[activeTab].id}`}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div>
+                      <div className="animate-in slide-in-from-bottom-4 duration-500 delay-300">
                         <h5 className="font-bold text-[#fae78e] uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
                           <Globe className="w-4 h-4" /> Outreach Programs
                         </h5>
@@ -246,7 +308,7 @@ const MinistriesPage: React.FC = () => {
                           ))}
                         </ul>
                       </div>
-                      <div>
+                      <div className="animate-in slide-in-from-bottom-4 duration-500 delay-500">
                         <h5 className="font-bold text-[#fae78e] uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
                           <Clock className="w-4 h-4" /> Weekly Schedule
                         </h5>

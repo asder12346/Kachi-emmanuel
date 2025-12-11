@@ -1,65 +1,69 @@
+
 import React from 'react';
 import { X, BookOpen, SunMedium } from 'lucide-react';
+import { Page } from '../App';
 
 interface DevotionalModalProps {
   onClose: () => void;
+  onNavigate: (page: Page) => void;
 }
 
-const DevotionalModal: React.FC<DevotionalModalProps> = ({ onClose }) => {
+const DevotionalModal: React.FC<DevotionalModalProps> = ({ onClose, onNavigate }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-500"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md animate-in fade-in duration-500"
         onClick={onClose}
       ></div>
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500 border border-slate-200 dark:border-white/10">
+      <div className="relative w-full max-w-md bg-[#280c2d] rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500 border border-[#fae78e]/20">
         
         {/* Decorative Header Background */}
-        <div className="h-32 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-              backgroundSize: '20px 20px'
+        <div className="h-40 bg-gradient-to-br from-[#280c2d] to-black relative overflow-hidden flex items-center justify-center border-b border-[#fae78e]/10">
+          <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, #fae78e 1px, transparent 0)`,
+              backgroundSize: '24px 24px'
           }}></div>
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white flex flex-col items-center">
-            <SunMedium className="w-10 h-10 mb-2 animate-pulse-slow" />
-            <h3 className="font-display font-bold text-xl tracking-wider uppercase">Daily Word</h3>
+          <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#fae78e]/5 rounded-full blur-2xl"></div>
+          <div className="flex flex-col items-center relative z-10">
+            <div className="p-3 bg-[#fae78e] rounded-2xl mb-3 shadow-[0_0_20px_rgba(250,231,142,0.4)]">
+                <SunMedium className="w-8 h-8 text-[#280c2d]" />
+            </div>
+            <h3 className="font-display font-bold text-lg tracking-[0.3em] uppercase text-[#fae78e]">Daily Devotional</h3>
           </div>
           
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors backdrop-blur-md focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-[#fae78e] text-[#fae78e] hover:text-[#280c2d] rounded-full transition-all border border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-8 text-center">
-          <h2 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-3">
-            Today's Devotional
+        <div className="p-10 text-center">
+          <h2 className="font-display text-2xl font-bold text-white mb-4">
+            Today's Fresh Manna
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-            Start your day with spiritual nourishment! Dive into a word that refreshes your soul and renews your mind.
+          <p className="text-slate-300 mb-10 leading-relaxed font-light italic">
+            "Thy word is a lamp unto my feet, and a light unto my path." — Psalm 119:105
           </p>
 
-          <div className="flex flex-col gap-3">
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); onClose(); }}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          <div className="flex flex-col gap-4">
+            <button 
+              onClick={() => onNavigate('devotionals')}
+              className="w-full py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-bold rounded-xl shadow-lg shadow-[#fae78e]/10 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <BookOpen className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Read Now
-            </a>
+              Read Devotional
+            </button>
             <button 
               onClick={onClose}
-              className="w-full py-3 text-slate-500 dark:text-slate-400 font-medium hover:text-slate-800 dark:hover:text-white transition-colors text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
+              className="w-full py-3 text-slate-500 font-bold hover:text-white transition-colors text-xs uppercase tracking-widest focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
             >
-              Maybe Later
+              Close
             </button>
           </div>
         </div>
