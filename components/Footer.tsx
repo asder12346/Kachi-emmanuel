@@ -42,7 +42,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-4">
             <button 
               onClick={() => onNavigate('home', 'home')}
-              className="flex items-center gap-3 mb-8 group"
+              className="flex items-center gap-3 mb-8 group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
             >
               <div className="p-2.5 rounded-2xl bg-[#fae78e] shadow-[0_0_15px_#fae78e] group-hover:rotate-6 transition-transform">
                 <BookOpenText className="w-8 h-8 text-[#280c2d]" />
@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <a 
                   key={social.label}
                   href={social.href}
-                  className={`w-10 h-10 flex items-center justify-center rounded-xl bg-[#280c2d] border border-[#fae78e]/20 text-[#fae78e] hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:-translate-y-1`}
+                  className={`w-10 h-10 flex items-center justify-center rounded-xl bg-[#280c2d] border border-[#fae78e]/20 text-[#fae78e] hover:bg-[#fae78e] hover:text-[#280c2d] transition-all transform hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black`}
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -83,7 +83,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <li key={link.name}>
                   <button 
                     onClick={() => onNavigate(link.page as Page, link.section)}
-                    className="hover:text-[#fae78e] transition-colors flex items-center gap-2 group text-sm font-medium"
+                    className="hover:text-[#fae78e] transition-colors flex items-center gap-2 group text-sm font-medium focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
                   >
                     <ArrowRight className="w-3 h-3 text-[#fae78e] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                     {link.name}
@@ -105,7 +105,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Email Support</span>
-                  <a href="mailto:info@kachiministry.org" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold">
+                  <a href="mailto:info@kachiministry.org" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">
                     info@kachiministry.org
                   </a>
                 </div>
@@ -116,7 +116,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Global Line</span>
-                  <a href="tel:+2348137665723" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold">
+                  <a href="tel:+2348137665723" className="text-slate-300 hover:text-white transition-colors text-sm font-semibold focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">
                     +234 813 766 5723
                   </a>
                 </div>
@@ -146,7 +146,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </p>
                 <button 
                   onClick={() => onNavigate('home', 'partner')}
-                  className="w-full py-4 bg-[#fae78e] text-[#280c2d] hover:bg-white transition-all font-bold rounded-2xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(250,231,142,0.3)]"
+                  className="w-full py-4 bg-[#fae78e] text-[#280c2d] hover:bg-white transition-all font-bold rounded-2xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(250,231,142,0.3)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Become a Partner <ArrowRight className="w-4 h-4" />
                 </button>
@@ -155,21 +155,21 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-[#fae78e]/10 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="pt-10 border-t border-[#fae78e]/10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
             <p className="text-slate-500 text-xs font-medium">
               &copy; {currentYear} Kachi Emmanuel Ministries. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-                <a href="#" className="text-[10px] text-slate-600 hover:text-[#fae78e] uppercase tracking-widest transition-colors">Privacy Policy</a>
-                <a href="#" className="text-[10px] text-slate-600 hover:text-[#fae78e] uppercase tracking-widest transition-colors">Terms of Service</a>
+                <a href="#" className="text-[10px] text-slate-600 hover:text-[#fae78e] uppercase tracking-widest transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">Privacy Policy</a>
+                <a href="#" className="text-[10px] text-slate-600 hover:text-[#fae78e] uppercase tracking-widest transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">Terms of Service</a>
             </div>
           </div>
 
           {/* Back to Top */}
           <button 
             onClick={scrollToTop}
-            className="flex items-center gap-3 px-6 py-3 bg-[#280c2d] hover:bg-[#fae78e] text-slate-400 hover:text-[#280c2d] rounded-full border border-[#fae78e]/20 transition-all group shadow-lg"
+            className="flex items-center gap-3 px-6 py-3 bg-[#280c2d] hover:bg-[#fae78e] text-slate-400 hover:text-[#280c2d] rounded-full border border-[#fae78e]/20 transition-all group shadow-lg focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <span className="text-[10px] font-bold uppercase tracking-widest">Back to top</span>
             <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />

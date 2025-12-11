@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Camera } from 'lucide-react';
+import ImageCarousel from './ImageCarousel'; // Import the new carousel component
 
 const GalleryItem: React.FC<{ img: { src: string; alt: string; caption: string }; index: number }> = ({ img, index }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,15 +46,15 @@ const GalleryItem: React.FC<{ img: { src: string; alt: string; caption: string }
 
 const GallerySection: React.FC = () => {
   const galleryImages = [
-    { src: 'https://via.placeholder.com/800x600/280c2d/ffffff?text=Ministry+Event', alt: 'Ministry Event', caption: 'Ministry Event' },
-    { src: 'https://via.placeholder.com/800x600/fae78e/280c2d?text=Bible+Study', alt: 'Bible Study', caption: 'Bible Study' },
-    { src: 'https://via.placeholder.com/800x600/333333/ffffff?text=Prayer+Session', alt: 'Prayer Session', caption: 'Prayer Session' },
-    { src: 'https://via.placeholder.com/800x600/550055/ffffff?text=Youth+Program', alt: 'Youth Program', caption: 'Youth Program' },
-    { src: 'https://via.placeholder.com/800x600/000000/fae78e?text=Outreach+Day', alt: 'Outreach Day', caption: 'Outreach Day' },
-    { src: 'https://via.placeholder.com/800x600/280c2d/fae78e?text=Worship+Night', alt: 'Worship Night', caption: 'Worship Night' },
-    { src: 'https://via.placeholder.com/800x600/fae78e/000000?text=Community+Service', alt: 'Community Service', caption: 'Community Service' },
-    { src: 'https://via.placeholder.com/800x600/111111/ffffff?text=Conference', alt: 'Conference', caption: 'Conference' },
-    { src: 'https://via.placeholder.com/800x600/442244/fae78e?text=Baptism', alt: 'Baptism', caption: 'Baptism Service' },
+    { src: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Ministry Event', caption: 'Ministry Event' },
+    { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Bible Study', caption: 'Bible Study' },
+    { src: 'https://images.unsplash.com/photo-1555421689-d6847113196f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Prayer Session', caption: 'Prayer Session' },
+    { src: 'https://images.unsplash.com/photo-1517486851061-f09c25f48866?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Youth Program', caption: 'Youth Program' },
+    { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Outreach Day', caption: 'Outreach Day' },
+    { src: 'https://images.unsplash.com/photo-1522071820075-848f87e2b7e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Worship Night', caption: 'Worship Night' },
+    { src: 'https://images.unsplash.com/photo-1510525000516-ac69b827170d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Community Service', caption: 'Community Service' },
+    { src: 'https://images.unsplash.com/photo-1543269875-ae9a70719602?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Conference', caption: 'Conference' },
+    { src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', alt: 'Baptism', caption: 'Baptism Service' },
   ];
 
   return (
@@ -69,10 +70,23 @@ const GallerySection: React.FC = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Desktop View: Full Grid */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {galleryImages.map((img, index) => (
             <GalleryItem key={index} img={img} index={index} />
           ))}
+        </div>
+
+        {/* Mobile View: First Two + Carousel */}
+        <div className="block md:hidden">
+          <div className="grid grid-cols-2 gap-6 mb-8">
+            {galleryImages.slice(0, 2).map((img, index) => (
+              <GalleryItem key={index} img={img} index={index} />
+            ))}
+          </div>
+          {galleryImages.length > 2 && (
+            <ImageCarousel images={galleryImages.slice(2)} />
+          )}
         </div>
       </div>
     </section>

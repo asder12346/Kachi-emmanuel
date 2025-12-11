@@ -81,14 +81,14 @@ const TestimonialsSection: React.FC = () => {
                 <div className="absolute bottom-4 right-6 flex gap-2">
                   <button
                     onClick={goToPrevious}
-                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
+                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                     aria-label="Previous"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={goToNext}
-                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20"
+                    className="p-2 bg-slate-100 dark:bg-black/40 rounded-full text-slate-800 dark:text-white hover:bg-[#fae78e] hover:text-[#280c2d] transition-all border border-slate-200 dark:border-[#fae78e]/20 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                     aria-label="Next"
                   >
                     <ArrowRight className="w-3.5 h-3.5" />

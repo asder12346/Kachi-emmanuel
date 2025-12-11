@@ -44,14 +44,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             <div className="flex flex-col sm:flex-row gap-6">
               <button
                 onClick={() => onNavigate?.('partner')}
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_20px_rgba(250,231,142,0.4)] hover:scale-[1.02] hover:bg-white transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_20px_rgba(250,231,142,0.4)] hover:scale-[1.02] hover:bg-white transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Become a Partner <ArrowRight className="w-5 h-5 ml-2" />
               </button>
               
               <button
                 onClick={() => onNavigate?.('ministries')}
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white border border-white/20 font-bold rounded-xl hover:bg-white/10 hover:border-[#fae78e]/50 transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white border border-white/20 font-bold rounded-xl hover:bg-white/10 hover:border-[#fae78e]/50 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Our Ministries
               </button>

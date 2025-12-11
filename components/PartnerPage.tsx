@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Globe, Play, Users, DollarSign, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Heart, Globe, Play, Users, DollarSign, CheckCircle2, ArrowRight, X } from 'lucide-react';
 import { Page } from '../App';
 
 interface PartnerPageProps {
@@ -9,6 +9,7 @@ interface PartnerPageProps {
 const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
   const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time');
   const [amount, setAmount] = useState('50');
+  const [customAmount, setCustomAmount] = useState(''); // New state for custom amount input
   const [step, setStep] = useState(1);
 
   const stats = [
@@ -19,6 +20,23 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
   ];
 
   const amounts = ['25', '50', '100', '250'];
+
+  const handleAmountSelect = (selectedAmount: string, type: 'one-time' | 'monthly') => {
+    setAmount(selectedAmount);
+    setDonationType(type);
+    setCustomAmount(''); // Clear custom amount when a preset is selected
+    setStep(2);
+  };
+
+  const handleCustomAmountSubmit = (type: 'one-time' | 'monthly') => {
+    if (customAmount && parseFloat(customAmount) > 0) {
+      setAmount(customAmount);
+      setDonationType(type);
+      setStep(2);
+    } else {
+      alert('Please enter a valid custom amount.');
+    }
+  };
 
   return (
     <div className="bg-black text-white transition-colors duration-300">
@@ -44,8 +62,11 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
           </p>
           <div className="mt-12 flex justify-center">
             <button 
-              onClick={() => setStep(1)}
-              className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_20px_#fae78e] hover:bg-white hover:scale-105 transition-all transform active:scale-95"
+              onClick={() => {
+                setStep(1); // Ensure we are on step 1 if navigating from hero
+                document.getElementById('support-options')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-10 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-[0_0_20px_#fae78e] hover:bg-white hover:scale-105 transition-all transform active:scale-95 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Donate Now
             </button>
@@ -54,14 +75,20 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Kingdom Partnership Section */}
-      <section className="py-20 bg-[#050505]">
+      <section className="py-20 bg-[#050505] animate-in fade-in slide-in-from-bottom-8">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl font-display font-bold text-white mb-6">Kingdom Partnership</h2>
             <p className="text-lg text-slate-400 leading-relaxed mb-8 font-light">
               Your partnership enables us to reach more souls, produce life-changing media content, and support communities in need. Together, we can make an eternal impact for the Kingdom of God.
             </p>
-            <button className="flex items-center gap-3 text-[#fae78e] font-bold text-lg group hover:text-white transition-colors">
+            <button 
+              onClick={() => {
+                setStep(1);
+                document.getElementById('support-options')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="flex items-center gap-3 text-[#fae78e] font-bold text-lg group hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
+            >
               Become a Partner Today <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </button>
           </div>
@@ -78,7 +105,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Support Options Section */}
-      <section className="py-24 bg-[#0a0a0a]">
+      <section id="support-options" className="py-24 bg-[#0a0a0a] animate-in fade-in slide-in-from-bottom-8 delay-100">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center mb-16 text-white">Support Options</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -94,16 +121,25 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
                 {amounts.map(a => (
                   <button 
                     key={a}
-                    onClick={() => { setAmount(a); setDonationType('one-time'); setStep(2); }}
-                    className={`py-3 border rounded-xl font-bold transition-all active:scale-95 ${amount === a && donationType === 'one-time' ? 'border-[#fae78e] bg-[#fae78e] text-[#280c2d]' : 'border-[#fae78e]/30 text-white hover:border-[#fae78e]'}`}
+                    onClick={() => handleAmountSelect(a, 'one-time')}
+                    className={`py-3 border rounded-xl font-bold transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] ${amount === a && donationType === 'one-time' && step === 2 ? 'border-[#fae78e] bg-[#fae78e] text-[#280c2d]' : 'border-[#fae78e]/30 text-white hover:border-[#fae78e]'}`}
                   >
                     ${a}
                   </button>
                 ))}
+                {/* Custom Amount for One-Time */}
+                <input
+                  type="number"
+                  placeholder="Custom amount"
+                  value={customAmount}
+                  onChange={(e) => setCustomAmount(e.target.value)}
+                  onBlur={() => handleCustomAmountSubmit('one-time')} // Trigger on blur
+                  className="w-full px-4 py-3 rounded-xl border border-[#fae78e]/30 bg-black/50 text-white placeholder-slate-500 focus:outline-none focus:border-[#fae78e] transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                />
               </div>
               <button 
-                onClick={() => { setDonationType('one-time'); setStep(2); }}
-                className="w-full py-4 bg-white text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-slate-200"
+                onClick={() => handleCustomAmountSubmit('one-time')}
+                className="w-full py-4 bg-white text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-slate-200 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
               >
                 Give One-Time Gift
               </button>
@@ -126,16 +162,25 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
                 {amounts.map(a => (
                   <button 
                     key={a}
-                    onClick={() => { setAmount(a); setDonationType('monthly'); setStep(2); }}
-                    className={`py-3 border rounded-xl font-bold transition-all active:scale-95 ${amount === a && donationType === 'monthly' ? 'border-[#fae78e] bg-[#fae78e] text-[#280c2d]' : 'border-[#fae78e]/30 text-white hover:border-[#fae78e]'}`}
+                    onClick={() => handleAmountSelect(a, 'monthly')}
+                    className={`py-3 border rounded-xl font-bold transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] ${amount === a && donationType === 'monthly' && step === 2 ? 'border-[#fae78e] bg-[#fae78e] text-[#280c2d]' : 'border-[#fae78e]/30 text-white hover:border-[#fae78e]'}`}
                   >
                     ${a}
                   </button>
                 ))}
+                 {/* Custom Amount for Monthly */}
+                <input
+                  type="number"
+                  placeholder="Custom amount"
+                  value={customAmount}
+                  onChange={(e) => setCustomAmount(e.target.value)}
+                  onBlur={() => handleCustomAmountSubmit('monthly')} // Trigger on blur
+                  className="w-full px-4 py-3 rounded-xl border border-[#fae78e]/30 bg-black/50 text-white placeholder-slate-500 focus:outline-none focus:border-[#fae78e] transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                />
               </div>
               <button 
-                onClick={() => { setDonationType('monthly'); setStep(2); }}
-                className="w-full py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-white hover:scale-[1.02] shadow-[0_0_15px_rgba(250,231,142,0.4)]"
+                onClick={() => handleCustomAmountSubmit('monthly')}
+                className="w-full py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl active:scale-95 transition-all hover:bg-white hover:scale-[1.02] shadow-[0_0_15px_rgba(250,231,142,0.4)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
               >
                 Become Monthly Partner
               </button>
@@ -157,23 +202,39 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ onNavigate }) => {
 
               <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('Redirecting to secure gateway...'); }}>
                 <div>
-                  <label className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Full Name</label>
-                  <input type="text" placeholder="Enter your full name" className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white placeholder-slate-500 focus:outline-none focus:border-[#fae78e] transition-colors" required />
+                  <label htmlFor="fullName" className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Full Name</label>
+                  <input type="text" id="fullName" placeholder="Enter your full name" className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]" required />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Email Address</label>
-                  <input type="email" placeholder="Enter your email" className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white placeholder-slate-500 focus:outline-none focus:border-[#fae78e] transition-colors" required />
+                  <label htmlFor="emailAddress" className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Email Address</label>
+                  <input type="email" id="emailAddress" placeholder="Enter your email" className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]" required />
                 </div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Amount ($)</label>
-                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white focus:outline-none focus:border-[#fae78e] transition-colors" required />
+                    <label htmlFor="donationAmount" className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Amount ($)</label>
+                    <input type="number" id="donationAmount" value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]" required />
                   </div>
-                  <div className="flex items-end">
-                     <button type="submit" className="w-full py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-lg hover:bg-white transition-all active:scale-95">
-                        Proceed to Give
+                  <div>
+                    <label htmlFor="donationType" className="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-widest">Donation Type</label>
+                    <input type="text" id="donationType" value={donationType === 'one-time' ? 'One-Time Gift' : 'Monthly Partnership'} readOnly className="w-full px-6 py-4 rounded-xl bg-black/50 border border-[#fae78e]/20 text-white cursor-not-allowed focus:outline-none focus:border-[#fae78e] transition-colors" />
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button 
+                        type="button" 
+                        onClick={() => {
+                            setStep(1); 
+                            document.getElementById('support-options')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="w-full sm:w-auto flex-1 py-4 bg-white/10 text-white font-bold rounded-xl shadow-lg hover:bg-white/20 transition-all active:scale-95 flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
+                    >
+                        <X className="w-5 h-5" />
+                        Back to Support Options
+                    </button>
+                     <button type="submit" className="w-full sm:w-auto flex-1 py-4 bg-[#fae78e] text-[#280c2d] font-bold rounded-xl shadow-lg hover:bg-white transition-all active:scale-95 flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]">
+                        <DollarSign className="w-5 h-5" />
+                        Process Donation
                      </button>
-                  </div>
                 </div>
               </form>
               

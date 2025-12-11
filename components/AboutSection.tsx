@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Target, Compass, Shield, Flame, Heart, Users, Play, Globe, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { Page } from '../App';
 
@@ -6,6 +6,65 @@ interface AboutSectionProps {
   isSimple?: boolean;
   onNavigate?: (page: Page, sectionId?: string) => void;
 }
+
+interface AnimatedNumberProps {
+  targetValue: number;
+  suffix: string;
+  duration?: number; // in milliseconds
+}
+
+const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ targetValue, suffix, duration = 2000 }) => {
+  const [currentValue, setCurrentValue] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const animationStarted = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !animationStarted.current) {
+          animationStarted.current = true;
+          const start = 0;
+          let startTime: number | null = null;
+
+          const animate = (currentTime: number) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const animated = Math.floor(progress * targetValue);
+            setCurrentValue(animated);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [targetValue, duration]);
+
+  const formatNumber = (num: number): string => {
+    if (num >= 1000000) return (num / 1000000).toFixed(0);
+    return num.toString();
+  };
+
+  return (
+    <div ref={ref} className="text-4xl md:text-5xl font-extrabold text-white mb-2">
+      {formatNumber(currentValue)}{suffix}
+    </div>
+  );
+};
+
 
 const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigate }) => {
   const coreBeliefs = [
@@ -18,10 +77,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
   ];
 
   const stats = [
-    { label: 'Lives Impacted', value: '1M+', icon: Users },
-    { label: 'Countries Reached', value: '15+', icon: Globe },
-    { label: 'Media Productions', value: '500+', icon: Play },
-    { label: 'Community Projects', value: '50+', icon: Heart },
+    { label: 'Lives Impacted', value: 1000000, suffix: 'M+', icon: Users },
+    { label: 'Countries Reached', value: 15, suffix: '+', icon: Globe },
+    { label: 'Media Productions', value: 500, suffix: '+', icon: Play },
+    { label: 'Community Projects', value: 50, suffix: '+', icon: Heart },
   ];
 
   if (isSimple) {
@@ -106,6 +165,36 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
         </div>
       </section>
 
+      {/* New: Our Vision & Mission Section */}
+      <section className="py-24 bg-slate-50 dark:bg-[#0a0a0a] transition-colors">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-display font-bold text-slate-900 dark:text-white mb-4">Our Vision & Mission</h3>
+            <div className="w-20 h-1 bg-[#fae78e] mx-auto rounded-full shadow-[0_0_10px_#fae78e]"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Vision Card */}
+            <div className="p-8 bg-black dark:bg-black rounded-xl shadow-xl shadow-purple-500/30 border border-purple-600/30 dark:border-purple-600/30 animate-in fade-in slide-in-from-left-8 duration-700">
+              <h4 className="text-xl font-bold text-purple-600 dark:text-purple-300 mb-4 flex items-center gap-2">
+                <Target className="w-6 h-6 text-purple-600 dark:text-purple-300" /> Vision
+              </h4>
+              <p className="text-sm text-white dark:text-white leading-relaxed font-light">
+                To raise a generation rooted in Christ, empowered by the Holy Spirit, living out the Gospel with creativity, compassion, and excellence.
+              </p>
+            </div>
+            {/* Mission Card */}
+            <div className="p-8 bg-black dark:bg-black rounded-xl shadow-xl shadow-purple-500/30 border border-purple-600/30 dark:border-purple-600/30 animate-in fade-in slide-in-from-right-8 duration-700 delay-100">
+              <h4 className="text-xl font-bold text-purple-600 dark:text-purple-300 mb-4 flex items-center gap-2">
+                <Compass className="w-6 h-6 text-purple-600 dark:text-purple-300" /> Mission
+              </h4>
+              <p className="text-sm text-white dark:text-white leading-relaxed font-light">
+                To spread the Gospel through innovative media, practical teaching, and compassionate outreach, equipping believers to fulfill the Great Commission.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Core Beliefs */}
       <section className="py-24 bg-slate-50 dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4">
@@ -115,7 +204,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coreBeliefs.map((belief, i) => (
-              <div key={i} className="p-8 bg-white dark:bg-[#280c2d] rounded-[2.5rem] shadow-xl border border-slate-200 dark:border-[#fae78e]/10 hover:border-[#fae78e] transition-all group">
+              <div key={i} className="p-8 bg-white dark:bg-[#280c2d] rounded-[2.5rem] shadow-xl border border-slate-200 dark:border-[#fae78e]/10 hover:border-[#fae78e] transition-all group group-hover:scale-[1.03] group-hover:rotate-1">
                 <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-black flex items-center justify-center mb-6 group-hover:bg-[#fae78e] transition-colors">
                   <belief.icon className="w-7 h-7 text-[#280c2d] dark:text-[#fae78e] group-hover:text-[#280c2d]" />
                 </div>
@@ -138,7 +227,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
                 <div className="w-16 h-16 rounded-full bg-[#fae78e]/10 border border-[#fae78e]/30 flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(250,231,142,0.2)]">
                   <s.icon className="w-8 h-8 text-[#fae78e]" />
                 </div>
-                <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">{s.value}</div>
+                <AnimatedNumber targetValue={s.value} suffix={s.suffix} />
                 <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#fae78e]">{s.label}</div>
               </div>
             ))}
@@ -151,7 +240,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isSimple = false, onNavigat
 
 // Simple helper icon
 const HandHeart = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3.5L12 8c.6-1 1-2.1 1-3.2A2.8 2.8 0 0 0 10.2 2c-.6 0-1.2.3-1.6.8L5 8H2v10a2 2 0 0 0 2 2h12.5a2.5 2.5 0 0 0 2.4-3.2L18 14H11Z"/><path d="M11 14v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2 2v-4"/><path d="M7 15h0"/></svg>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3.5L12 8c.6-1 1-2.1 1-3.2A2.8 2.8 0 0 0 10.2 2c-.6 0-1.2.3-1.6.8L5 8H2v10a2 2 0 0 0 2 2h12.5a2.5 2 0 0 0 2.4-3.2L18 14H11Z"/><path d="M11 14v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2 2v-4"/><path d="M7 15h0"/></svg>
 );
 
 export default AboutSection;

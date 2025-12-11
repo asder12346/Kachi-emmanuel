@@ -170,7 +170,7 @@ const MinistriesPage: React.FC = () => {
             <div className="relative aspect-video rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(40,12,45,0.6)] border border-[#fae78e]/20 group">
                 <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" className="w-full h-full object-cover opacity-70 group-hover:opacity-50 transition-opacity duration-500" alt="Ministry Video" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <button className="w-20 h-20 bg-[#fae78e] rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_#fae78e] group-hover:scale-110 transition-transform">
+                    <button className="w-20 h-20 bg-[#fae78e] rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_#fae78e] group-hover:scale-110 transition-transform focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black" aria-label="Play featured video">
                         <Play className="w-8 h-8 text-[#280c2d] fill-[#280c2d]" />
                     </button>
                 </div>
@@ -196,11 +196,14 @@ const MinistriesPage: React.FC = () => {
                 <button
                   key={detail.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all ${
+                  className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold transition-all focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] ${
                     activeTab === idx 
                       ? 'bg-[#fae78e] text-[#280c2d] shadow-[0_0_15px_rgba(250,231,142,0.4)]' 
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
+                  aria-controls={`tab-panel-${detail.id}`}
+                  aria-selected={activeTab === idx}
+                  role="tab"
                 >
                   <detail.icon className={`w-5 h-5 ${activeTab === idx ? 'text-[#280c2d]' : 'text-[#fae78e]'}`} />
                   <span className="text-sm whitespace-nowrap">{detail.title}</span>
@@ -222,13 +225,13 @@ const MinistriesPage: React.FC = () => {
                     <p className="text-slate-300 leading-relaxed mb-10 text-lg italic font-light border-l-2 border-[#fae78e]/30 pl-4">
                       "{ministryDetails[activeTab].description}"
                     </p>
-                    <button className="flex items-center gap-2 px-8 py-3.5 bg-black text-white border border-[#fae78e]/30 font-bold rounded-xl hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-lg active:scale-95 group">
+                    <button className="flex items-center gap-2 px-8 py-3.5 bg-black text-white border border-[#fae78e]/30 font-bold rounded-xl hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-lg active:scale-95 group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                       {ministryDetails[activeTab].cta}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                  </div>
                  {/* Details Column */}
-                 <div className="lg:w-3/5 p-8 md:p-12">
+                 <div className="lg:w-3/5 p-8 md:p-12" role="tabpanel" id={`tab-panel-${ministryDetails[activeTab].id}`}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div>
                         <h5 className="font-bold text-[#fae78e] uppercase tracking-wider text-xs mb-6 flex items-center gap-2">
@@ -339,7 +342,7 @@ const MinistriesPage: React.FC = () => {
                             target?.scrollIntoView({ behavior: 'smooth' });
                             setActiveTab(i);
                           }}
-                          className="flex items-center gap-2 text-white/70 hover:text-[#fae78e] font-bold hover:gap-4 transition-all text-sm"
+                          className="flex items-center gap-2 text-white/70 hover:text-[#fae78e] font-bold hover:gap-4 transition-all text-sm focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
                         >
                             Deep Dive <ArrowRight className="w-4 h-4" />
                         </button>
@@ -364,7 +367,7 @@ const MinistriesPage: React.FC = () => {
                         </div>
                         <h4 className="text-xl font-bold mb-4">{arm.title}</h4>
                         <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-grow">{arm.description}</p>
-                        <button className="px-8 py-2.5 bg-transparent border border-[#fae78e] text-[#fae78e] font-bold rounded-full hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-[0_0_10px_rgba(250,231,142,0.2)]">
+                        <button className="px-8 py-2.5 bg-transparent border border-[#fae78e] text-[#fae78e] font-bold rounded-full hover:bg-[#fae78e] hover:text-[#280c2d] transition-all shadow-[0_0_10px_rgba(250,231,142,0.2)] focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                             {arm.btn}
                         </button>
                     </div>
@@ -380,7 +383,7 @@ const MinistriesPage: React.FC = () => {
             "Ministering through Creativity for the Kingdom of God"
           </p>
           <p className="text-[#fae78e] uppercase tracking-[0.5em] text-xs font-bold mb-10">Kachi Emmanuel Ministries</p>
-          <button className="px-12 py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-extrabold rounded-full shadow-[0_0_20px_#fae78e] transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto">
+          <button className="px-12 py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-extrabold rounded-full shadow-[0_0_20px_#fae78e] transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black">
              <Zap className="w-5 h-5 text-[#280c2d] fill-current" />
              Support the Mission
           </button>

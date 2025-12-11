@@ -63,7 +63,7 @@ const MinistriesSection: React.FC<MinistriesSectionProps> = ({ onNavigate }) => 
                 <p className="text-sm text-slate-300 mb-8 leading-relaxed font-light">{m.description}</p>
                 <button 
                   onClick={() => onNavigate?.('ministries')}
-                  className="flex items-center gap-2 text-[#fae78e] font-bold text-sm hover:gap-4 transition-all group/btn"
+                  className="flex items-center gap-2 text-[#fae78e] font-bold text-sm hover:gap-4 transition-all group/btn focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d] rounded-md"
                 >
                   Learn More <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                 </button>

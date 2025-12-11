@@ -29,7 +29,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
             href={result.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group relative flex flex-col p-5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-white/5 rounded-xl hover:border-cyan-500/30 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md"
+            className="group relative flex flex-col p-5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-white/5 rounded-xl hover:border-cyan-500/30 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/0 group-hover:bg-cyan-500/50 transition-all duration-300"></div>
             

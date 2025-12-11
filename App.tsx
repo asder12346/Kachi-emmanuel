@@ -13,6 +13,7 @@ import ContactSection from './components/ContactSection';
 import VideoSection from './components/VideoSection';
 import Footer from './components/Footer';
 import DevotionalModal from './components/DevotionalModal';
+import { Heart } from 'lucide-react'; // Import the Heart icon
 
 export type Page = 'home' | 'about' | 'ministries' | 'partner';
 
@@ -82,7 +83,7 @@ const App: React.FC = () => {
       case 'ministries':
         return (
           <>
-            <MinistriesPage onNavigate={handleNavigate} />
+            <MinistriesPage />
           </>
         );
       case 'partner':
@@ -108,6 +109,16 @@ const App: React.FC = () => {
       <Footer onNavigate={handleNavigate} />
 
       {showDevotionalModal && <DevotionalModal onClose={handleCloseDevotional} />}
+
+      {/* Sticky Support Us Button */}
+      <button 
+        onClick={() => handleNavigate('partner')}
+        className="fixed bottom-8 right-8 z-50 flex items-center gap-2 px-6 py-3 bg-[#fae78e] text-[#280c2d] font-bold rounded-full shadow-lg hover:scale-110 transition-all duration-300 transform group focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        aria-label="Support Us"
+      >
+        <Heart className="w-5 h-5 fill-current text-[#280c2d] group-hover:scale-110 transition-transform" />
+        <span className="text-sm">Support Us</span>
+      </button>
     </div>
   );
 };

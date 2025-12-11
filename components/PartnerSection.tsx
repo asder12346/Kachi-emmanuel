@@ -86,7 +86,7 @@ const PartnerSection: React.FC<PartnerSectionProps> = ({ onNavigate }) => {
               
               <button
                 onClick={() => onNavigate?.('partner')}
-                className={`relative z-10 w-full inline-flex items-center justify-center px-8 py-4 text-sm font-bold rounded-2xl transition-all duration-300 shadow-lg transform active:scale-95 ${
+                className={`relative z-10 w-full inline-flex items-center justify-center px-8 py-4 text-sm font-bold rounded-2xl transition-all duration-300 shadow-lg transform active:scale-95 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                   option.highlight 
                   ? 'bg-[#fae78e] text-[#280c2d] hover:bg-white hover:scale-105 shadow-[0_0_20px_rgba(250,231,142,0.5)]' 
                   : 'bg-transparent text-white border border-[#fae78e]/30 hover:bg-[#fae78e] hover:text-[#280c2d] hover:border-[#fae78e]'

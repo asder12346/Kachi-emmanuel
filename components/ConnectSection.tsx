@@ -54,12 +54,12 @@ const ConnectSection: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="relative z-10 flex-grow px-8 py-5 rounded-2xl border border-[#fae78e]/20 bg-black/60 backdrop-blur-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-all shadow-2xl"
+            className="relative z-10 flex-grow px-8 py-5 rounded-2xl border border-[#fae78e]/20 bg-black/60 backdrop-blur-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-all shadow-2xl focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             aria-label="Email address for newsletter subscription"
           />
           <button
             type="submit"
-            className="relative z-10 inline-flex items-center justify-center px-10 py-5 bg-[#fae78e] hover:bg-white text-[#280c2d] font-bold rounded-2xl shadow-[0_0_30px_rgba(250,231,142,0.4)] transform hover:scale-[1.02] active:scale-95 transition-all group/btn"
+            className="relative z-10 inline-flex items-center justify-center px-10 py-5 bg-[#fae78e] hover:bg-white text-[#280c2d] font-bold rounded-2xl shadow-[0_0_30px_rgba(250,231,142,0.4)] transform hover:scale-[1.02] active:scale-95 transition-all group/btn focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             aria-label="Subscribe to mailing list"
           >
             Subscribe

@@ -49,7 +49,7 @@ const ContactSection: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500"
+                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                   aria-label="Your Name"
                 />
               </div>
@@ -64,7 +64,7 @@ const ContactSection: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500"
+                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                   aria-label="Email Address"
                 />
               </div>
@@ -79,13 +79,13 @@ const ContactSection: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500 resize-none"
+                  className="w-full px-6 py-4 rounded-xl border border-[#fae78e]/20 bg-black/40 text-white focus:outline-none focus:ring-2 focus:ring-[#fae78e] focus:border-transparent transition-colors shadow-inner placeholder-slate-500 resize-none focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                   aria-label="Your Message"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-bold rounded-xl shadow-[0_0_15px_rgba(250,231,142,0.3)] transform hover:-translate-y-1 transition-all active:scale-95 w-full"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#fae78e] hover:bg-white text-[#280c2d] font-bold rounded-xl shadow-[0_0_15px_rgba(250,231,142,0.3)] transform hover:-translate-y-1 transition-all active:scale-95 w-full focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#280c2d]"
                 aria-label="Send Message"
               >
                 <Send className="w-5 h-5 mr-2" />
@@ -108,7 +108,7 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-[#fae78e] uppercase tracking-[0.2em] mb-2">Email</p>
-                    <a href="mailto:info@kachiministry.org" className="text-xl font-medium text-white hover:text-[#fae78e] transition-colors break-all leading-tight">
+                    <a href="mailto:info@kachiministry.org" className="text-xl font-medium text-white hover:text-[#fae78e] transition-colors break-all leading-tight focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">
                       info@kachiministry.org
                     </a>
                   </div>
@@ -119,7 +119,7 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-[#fae78e] uppercase tracking-[0.2em] mb-2">Phone</p>
-                    <a href="tel:+2348137665723" className="text-xl font-medium text-white hover:text-[#fae78e] transition-colors leading-tight">
+                    <a href="tel:+2348137665723" className="text-xl font-medium text-white hover:text-[#fae78e] transition-colors leading-tight focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md">
                       +234 813 766 5723
                     </a>
                   </div>
@@ -151,7 +151,7 @@ const ContactSection: React.FC = () => {
                   <a 
                     key={label}
                     href="#" 
-                    className="w-12 h-12 bg-[#280c2d] hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-xl flex items-center justify-center transition-all group border border-[#fae78e]/20 hover:border-[#fae78e] hover:scale-110" 
+                    className="w-12 h-12 bg-[#280c2d] hover:bg-[#fae78e] text-white hover:text-[#280c2d] rounded-xl flex items-center justify-center transition-all group border border-[#fae78e]/20 hover:border-[#fae78e] hover:scale-110 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black" 
                     aria-label={label}
                   >
                     <Icon className="w-5 h-5" />

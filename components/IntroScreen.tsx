@@ -191,7 +191,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
          
          <button 
             onClick={handleEnter}
-            className="group relative px-8 py-3 bg-transparent overflow-hidden rounded-full"
+            className="group relative px-8 py-3 bg-transparent overflow-hidden rounded-full focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
          >
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600 to-blue-600 opacity-20 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="absolute inset-0 border border-cyan-500/50 rounded-full group-hover:border-cyan-400 transition-colors"></div>
@@ -206,7 +206,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
       {/* Skip Button (Visible always for UX) */}
       <button 
         onClick={onComplete}
-        className="absolute top-6 right-6 md:top-8 md:right-8 text-[10px] md:text-xs text-slate-600 hover:text-white transition-colors uppercase tracking-widest border border-transparent hover:border-white/10 px-3 py-1 rounded-full"
+        className="absolute top-6 right-6 md:top-8 md:right-8 text-[10px] md:text-xs text-slate-600 hover:text-white transition-colors uppercase tracking-widest border border-transparent hover:border-white/10 px-3 py-1 rounded-full focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       >
         Skip Intro
       </button>

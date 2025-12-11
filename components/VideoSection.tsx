@@ -7,7 +7,7 @@ const VideoSection: React.FC = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Simplified Video Frame */}
-        <div className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#fae78e]/20 group cursor-pointer animate-in fade-in zoom-in duration-700">
+        <div className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#fae78e]/20 group cursor-pointer animate-in fade-in zoom-in duration-700 focus-visible:ring-2 focus-visible:ring-[#fae78e] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-3xl" tabIndex={0} role="button" aria-label="Play ministry video">
            {/* Subtle Glow Effect */}
            <div className="absolute -inset-1 bg-gradient-to-r from-[#fae78e] to-[#280c2d] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
            

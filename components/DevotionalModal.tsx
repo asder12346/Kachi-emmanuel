@@ -31,7 +31,7 @@ const DevotionalModal: React.FC<DevotionalModalProps> = ({ onClose }) => {
           
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors backdrop-blur-md"
+            className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors backdrop-blur-md focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -50,14 +50,14 @@ const DevotionalModal: React.FC<DevotionalModalProps> = ({ onClose }) => {
             <a 
               href="#" 
               onClick={(e) => { e.preventDefault(); onClose(); }}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group"
+              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <BookOpen className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Read Now
             </a>
             <button 
               onClick={onClose}
-              className="w-full py-3 text-slate-500 dark:text-slate-400 font-medium hover:text-slate-800 dark:hover:text-white transition-colors text-sm"
+              className="w-full py-3 text-slate-500 dark:text-slate-400 font-medium hover:text-slate-800 dark:hover:text-white transition-colors text-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-md"
             >
               Maybe Later
             </button>

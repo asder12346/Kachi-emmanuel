@@ -28,10 +28,22 @@
   }
   
   .fade-in { animation-name: fadeIn; }
-  .slide-in-from-bottom-8 {
-    --tw-enter-translate-y: 2rem;
+  
+  /* Generalized enter keyframes for slide-in animations */
+  .slide-in-from-bottom-8,
+  .slide-in-from-top-8,
+  .slide-in-from-left-8,
+  .slide-in-from-right-8,
+  .slide-in-from-full { /* Added for full-width slide-ins, e.g., mobile nav */
     animation-name: enter;
   }
+
+  /* Define variables for slide-in directions */
+  .slide-in-from-bottom-8 { --tw-enter-translate-y: 2rem; }
+  .slide-in-from-top-8    { --tw-enter-translate-y: -2rem; }
+  .slide-in-from-left-8   { --tw-enter-translate-x: -2rem; }
+  .slide-in-from-right-8  { --tw-enter-translate-x: 2rem; }
+  .slide-in-from-full     { --tw-enter-translate-x: 100%; } /* For full width slide */
 }
 
 @keyframes fadeIn {
@@ -42,7 +54,7 @@
 @keyframes enter {
   from {
     opacity: 0;
-    transform: translateY(var(--tw-enter-translate-y, 0));
+    transform: translate(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0));
   }
 }
 
