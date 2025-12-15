@@ -69,6 +69,11 @@ const App: React.FC = () => {
   const handleNavigate = (page: Page, sectionId?: string) => {
     const isReturningToDevotionals = page === 'devotionals' && currentPage !== 'devotionals';
     
+    // Smooth scroll to top when changing actual pages
+    if (page !== currentPage && !sectionId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     setCurrentPage(page);
     setShowDevotionalModal(false); // Close modal if navigating from it
     
@@ -81,8 +86,9 @@ const App: React.FC = () => {
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
-      } else if (!isReturningToDevotionals) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (!isReturningToDevotionals && page !== currentPage) {
+        // Fallback for immediate scroll if needed
+        window.scrollTo({ top: 0, behavior: 'auto' });
       }
     }, 100);
   };
@@ -117,14 +123,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen transition-colors duration-300 flex flex-col bg-black text-white">
+    <div className="min-h-screen transition-colors duration-300 flex flex-col bg-black text-white selection:bg-[#fae78e] selection:text-[#280c2d]">
       <Navbar 
         onNavigate={handleNavigate}
         currentPage={currentPage}
       />
       
-      <main className="relative z-10 flex-grow">
-        {renderContent()}
+      {/* 
+        Keying the container with currentPage forces a re-mount on navigation,
+        triggering the CSS 'animate-page-enter' transition.
+      */}
+      <main className="relative z-10 flex-grow overflow-hidden">
+        <div key={currentPage} className="animate-page-enter">
+          {renderContent()}
+        </div>
       </main>
 
       <Footer onNavigate={handleNavigate} />

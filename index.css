@@ -13,15 +13,39 @@
   body {
     @apply bg-black text-white transition-colors duration-300;
     -webkit-font-smoothing: antialiased;
+    /* Sophisticated Mesh Background */
+    background: radial-gradient(circle at 50% 0%, #1a081d 0%, #000 70%),
+                radial-gradient(circle at 0% 100%, #120514 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, #1a081d 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Add a subtle grain texture overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+    opacity: 0.03;
+    z-index: 1;
   }
 }
 
-/* X-NAV MODULAR STYLES */
-/* Use unique prefixes to prevent conflicts with existing CSS */
+/* Glassmorphism for Navbar */
+.glass-header {
+  background: rgba(40, 12, 45, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(250, 231, 142, 0.15);
+}
 
+/* X-NAV MODULAR STYLES */
 .x-nav-burger {
-  width: 30px;
-  height: 22px;
+  width: 32px;
+  height: 24px;
   position: relative;
   cursor: pointer;
   display: flex;
@@ -35,37 +59,37 @@
 
 .x-nav-burger span {
   display: block;
-  height: 2.5px;
+  height: 3px;
   width: 100%;
   background-color: #fae78e;
   border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 0 8px rgba(250, 231, 142, 0.3);
 }
 
 .x-nav-burger.open span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(10.5px) rotate(45deg);
 }
 
 .x-nav-burger.open span:nth-child(2) {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translateX(-15px);
 }
 
 .x-nav-burger.open span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-10.5px) rotate(-45deg);
 }
 
-/* The Mobile Overlay - Explicitly Black Background */
 .x-nav-mobile-overlay {
   position: fixed;
   inset: 0;
-  background-color: #000000 !important; /* Forces black background */
+  background: radial-gradient(circle at center, #1a081d 0%, #000 100%) !important;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  padding: 80px 24px 40px;
+  padding: 100px 24px 40px;
   transform: translateY(-100%);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   opacity: 0;
   pointer-events: none;
 }
@@ -78,61 +102,71 @@
 
 .x-nav-link-item {
   width: 100%;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(250, 231, 142, 0.1);
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(250, 231, 142, 0.05);
   text-align: center;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: 0.2em;
+  font-size: 1.5rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #ffffff;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   background: transparent;
-  border-left: none;
-  border-right: none;
-  border-top: none;
 }
 
 .x-nav-link-item:active, .x-nav-link-item:hover {
   color: #fae78e;
+  transform: scale(1.05);
+  letter-spacing: 0.3em;
 }
 
 .x-nav-social-wrap {
   margin-top: auto;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 24px;
   padding-top: 40px;
 }
 
-/* Animations */
-@keyframes xFadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.x-animate-link {
-  animation: xFadeIn 0.5s ease forwards;
-  opacity: 0;
-}
-
-@layer utilities {
-  .animate-marquee {
-    animation: marquee 60s linear infinite;
+/* PAGE TRANSITION ANIMATIONS */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    filter: blur(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.animate-page-enter {
+  animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fae78e;
+  border-radius: 10px;
+  border: 2px solid #280c2d;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-15px); }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
